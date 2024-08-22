@@ -1,0 +1,23 @@
+import React from 'react';
+
+const FooterAddr:React.FC<{}> = ()=>{
+    return(
+        <div className='bg-[#495057] w-full h-[15rem] flex justify-evenly items-center flex-col text-white'>
+            <ul className='flex w-[38%] justify-between'>
+                <li>Features</li>
+                <li>|</li>
+                <li>Testimonials</li>
+                <li>|</li>
+                <li>Concat</li>
+                <li>|</li>
+                <li>Download</li>
+            </ul>
+            <div className='text-center'>
+                <p>내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용</p>
+                <p>Copyright ⓒ 2024 Your Company.  All rights reserved.</p>
+            </div>
+        </div>
+    )
+}
+
+export default FooterAddr
