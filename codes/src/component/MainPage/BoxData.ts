@@ -1,9 +1,9 @@
 class BoxData{
     id: number;
-    img: string;
+    img: string[];
 
-    constructor(img:string){
-        this.id = Math.random() * 100
+    constructor(img:string[]){
+        this.id = Math.round(Math.random() * 1000);
         this.img = img;
     }
 }
