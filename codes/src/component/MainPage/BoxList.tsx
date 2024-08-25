@@ -1,10 +1,21 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Dummy from '../../Img/dummy.png'
 import Box from './Box';
 import MoreBtn from './MoreBtn';
 import BoxData from './BoxData'
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setBoxData,convertBoxData } from '../reduxData/dataProducer';
 const BoxList:React.FC<{}> = () =>{
-    const data = Array.from({ length: 20 }, () => new BoxData('path/to/image'));
+    const data:BoxData[] = Array.from({ length: 20 }, () => new BoxData([Dummy,Dummy]));
+    
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        const convert = data.map(items => convertBoxData(items));
+        dispatch(setBoxData(convert));
+    },[dispatch,data]);
+
     const [nowData,setNowData] = useState(data.slice(0,6));
     const num = useRef(0);
     const [btnCheck,setBtnCheck] = useState(false);
@@ -24,7 +35,7 @@ const BoxList:React.FC<{}> = () =>{
     return(
         <div className='w-full h-full flex justify-center flex-col items-center'>
             <div className='w-[80%] h-full grid grid-cols-[repeat(auto-fit,minmax(25rem,1fr))] gap-10 text-center'>
-                {nowData.map((dataObj)=>{return <Box />})}
+                {nowData.map((dataObj)=>{return <Link key={dataObj.id} to={`/box/${dataObj.id}`}><Box Src={dataObj.img[0]} /></Link>})}
             </div>
             <MoreBtn handlerMoreBtn={handlerMoreBtn} btnCheck={btnCheck}/>
         </div>
