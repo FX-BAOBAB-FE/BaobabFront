@@ -6,8 +6,7 @@ import Footer from '../FooterInfo/Footer';
 
 const Final:React.FC<{}> = () =>{
     return(
-        <div className='w-full'>
-            <Header/>
+        <div className='bg'>
             <IntroImg/>
             <BoxList/>
             <Footer/>
