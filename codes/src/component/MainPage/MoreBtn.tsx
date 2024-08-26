@@ -1,5 +1,3 @@
-import React, { useRef, useState } from 'react'
-
 const MoreBtn:React.FC<{handlerMoreBtn:()=>void, btnCheck:boolean}> = (props)=>{
     return(
         <div className='mt-10 flex justify-center items-center rounded-2xl border-[#4C6EF5] border'>

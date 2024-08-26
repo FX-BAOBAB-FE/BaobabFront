@@ -11,7 +11,6 @@ function convertBoxData(obj:BoxData){
     }
 }
 
-
 const actionBox = createSlice(
     {
         name:'box',
