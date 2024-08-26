@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
-import Dummy from '../../Img/dummy.png'
+import box1 from '../../Img/7809915.jpg'
+import box2 from '../../Img/7844745.jpg'
 import Box from './Box';
 import MoreBtn from './MoreBtn';
 import BoxData from './BoxData'
@@ -7,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setBoxData,convertBoxData } from '../reduxData/dataProducer';
 const BoxList:React.FC<{}> = () =>{
-    const data:BoxData[] = Array.from({ length: 20 }, () => new BoxData([Dummy,Dummy]));
+    const data:BoxData[] = Array.from({ length: 20 }, () => new BoxData([box1,box2]));
     
     const dispatch = useDispatch();
 
