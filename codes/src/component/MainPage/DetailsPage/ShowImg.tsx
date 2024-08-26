@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import BoxDataObj from "../../Types/BoxDataObj";
 import { forwardRef, useEffect, useRef, useState } from "react";
 
-const ShowImg = forwardRef<HTMLImageElement>((props,ref) => {
+const ShowImg = forwardRef<HTMLDivElement,{datas:BoxDataObj[]}>((props,ref) => {
     const {urlId} = useParams();
-    const datas = useSelector((state:BoxDataObj[]) => state);
+    const {datas} = props;
     const saveStorage = localStorage.getItem('Imgs');
     let Img:string[] = [];
 
@@ -31,8 +31,11 @@ const ShowImg = forwardRef<HTMLImageElement>((props,ref) => {
     }
     return(
         <div className='w-[65%] h-[40rem] mt-10 2xl:w-[80%] flex overflow-hidden rounded-xl'>
-            {Img.map((data) => <img ref={ref} className='w-full h-full' 
-            src={data} alt="not found box" />)}
+            <div ref={ref} className="relative flex">
+                {Img.map((data) => <img className='w-full h-full ' 
+                src={data} alt="not found box" />)}
+            </div>
+            
         </div>
     )
 })

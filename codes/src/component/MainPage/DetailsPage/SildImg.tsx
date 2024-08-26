@@ -2,37 +2,32 @@ import { useEffect, useRef, useState } from 'react';
 import Left from './Img/chevron-left.png'
 import Right from './Img/chevron-right.png'
 import ShowImg from './ShowImg'
+import { useSelector } from 'react-redux';
+import BoxDataObj from '../../Types/BoxDataObj';
 
 const SildImg:React.FC<{}> = ()=>{
-    const ImgRef = useRef<HTMLImageElement>(null);
-    const [innerWidth,setInnerWidth] = useState(window.innerWidth);
-    const [totalWidth,setTotalWidth] = useState(innerWidth);
+    const ImgRef = useRef<HTMLDivElement>(null);
+    const [imgWidth, setImgWidth] = useState(0);
+    const datas = useSelector((state:BoxDataObj[]) => state);
+    console.log(datas);
     function handlerLeftBtn(){
         if(ImgRef.current){
-            setTotalWidth(innerWidth+innerWidth)
-            console.log(totalWidth);
-            ImgRef.current.style.transform = `translateX(${totalWidth}px)`
+            ImgRef.current.style.transform = `translateX(${imgWidth+ImgRef.current.offsetWidth}px)`
+            setImgWidth(imgWidth+ImgRef.current.offsetWidth);
         }
     }
     function handlerRightBtn(){
         if(ImgRef.current){
-            console.log("RIGHT");
-            setTotalWidth(innerWidth-innerWidth)
-            console.log(totalWidth);
-            ImgRef.current.style.transform = `translateX(${totalWidth}px)`
-            
+            ImgRef.current.style.transform = `translateX(${imgWidth-ImgRef.current.offsetWidth}px)`
+            setImgWidth(imgWidth-ImgRef.current.offsetWidth);
         }
     }
-    
-    console.log(innerWidth);
-    useEffect(()=>{
-        window.addEventListener('resize',()=> setInnerWidth(window.innerWidth));
-    },[])
+
 
     return(
         <div className='flex justify-around items-center'>
-            <button onClick={handlerLeftBtn}><img src={Left} alt="Left cursor" /></button>
-            <ShowImg ref={ImgRef}/>
+            <button disabled={imgWidth >= 0} onClick={handlerLeftBtn}><img src={Left} alt="Left cursor" /></button>
+            <ShowImg datas={datas} ref={ImgRef}/>
             <button onClick={handlerRightBtn}><img src={Right} alt="Right cursor"/></button>
         </div>
     )

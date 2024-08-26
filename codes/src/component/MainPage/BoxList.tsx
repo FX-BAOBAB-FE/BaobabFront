@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setBoxData,convertBoxData } from '../reduxData/dataProducer';
 const BoxList:React.FC<{}> = () =>{
-    const data:BoxData[] = Array.from({ length: 20 }, () => new BoxData([box1,box2]));
+    const data:BoxData[] = Array.from({ length: 20 }, () => new BoxData([box1,box2,box1]));
     
     const dispatch = useDispatch();
 
