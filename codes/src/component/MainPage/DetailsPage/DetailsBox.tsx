@@ -6,7 +6,7 @@ const DetailsBox:React.FC<{}> = ()=>{
 
     return(
         <div className='flex justify-center'>
-            <div className='w-[70%] h-[80rem] bg-white rounded-2xl mt-10'>
+            <div className='flex flex-col items-center w-[70%] h-[80rem] bg-white rounded-2xl mt-10'>
                 <SildImg/>
                 <UserIntro/>
             </div>
