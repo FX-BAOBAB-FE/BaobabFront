@@ -13,6 +13,7 @@ const SildImg: React.FC<{}> = () => {
     if (storage) {
         ImgArr = JSON.parse(storage);
     }
+    console.log(ImgArr.length);
 
     function handlerLeftBtn() {
         if (ImgRef.current && currentIndex > 0) {

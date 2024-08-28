@@ -8,7 +8,6 @@ export default function UserIntro(){
             <hr className="w-full h-1 mt-2 mb-3"/>
             <UserContext />
 
-            
         </div>
     )
 }

@@ -6,9 +6,10 @@ import { forwardRef, useEffect, useRef, useState } from "react";
 const ShowImg = forwardRef<HTMLDivElement>((props,ref) => {
     const {urlId} = useParams();
     const datas = useSelector((state:BoxDataObj[]) => state);
-    const saveStorage = localStorage.getItem('Imgs');
-    let Img:string[] = [];
 
+    const saveStorage = localStorage.getItem('Imgs');
+
+    let Img:string[] = [];
     useEffect(()=>{
         const id = parseInt(urlId || '1');
         //새로고침을 할 경우 datas가 초기화됨.
@@ -29,8 +30,9 @@ const ShowImg = forwardRef<HTMLDivElement>((props,ref) => {
     }else{
         console.log("Not found!");
     }
+    console.log(Img.length);
     return(
-        <div className='w-[65%] h-[40rem] mt-10 2xl:w-[80%] flex overflow-hidden rounded-xl'>
+        <div className='w-[65%] h-[40rem] mt-10 flex overflow-hidden rounded-xl'>
             <div ref={ref} className="relative flex">
                 {Img.map((data,index) => <img key={index} className='w-full h-full ' 
                 src={data} alt="not found box" />)}
