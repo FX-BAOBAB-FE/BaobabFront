@@ -4,9 +4,9 @@ import Register from '../../Img/user-plus.png'
 import Btn from './HeaderBtn'
 import HeaderHambuger from './HeaderHambuger'
 import { Link, Outlet } from 'react-router-dom'
-//1044에서 mainImg, header 변경
+
 const Header:React.FC<{}> = ()=>{
-    const List = ['Feattures', 'Pricing','Blog','Pages','Help'];
+    const List = ['UsedGoodsDeal', 'Calc','Analyze','Help'];
     return(
         <>
             <div className="w-full h-20 flex justify-center bg-[#4C6EF5] text-white">

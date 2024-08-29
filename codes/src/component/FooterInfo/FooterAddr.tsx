@@ -6,9 +6,11 @@ const FooterAddr:React.FC<{}> = ()=>{
             <ul className='flex w-[38%] justify-between'>
                 <li>Features</li>
                 <li>|</li>
+                <li>About</li>
+                <li>|</li>
                 <li>Testimonials</li>
                 <li>|</li>
-                <li>Concat</li>
+                <li>Contact</li>
                 <li>|</li>
                 <li>Download</li>
             </ul>
