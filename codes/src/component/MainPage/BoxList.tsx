@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import box1 from '../../Img/7809915.jpg'
 import box2 from '../../Img/7844745.jpg'
+import dummy from '../../Img/dummy.png'
 import Box from './Box';
 import MoreBtn from './MoreBtn';
 import BoxData from './BoxData'
@@ -8,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setBoxData,convertBoxData } from '../reduxData/dataProducer';
 const BoxList:React.FC<{}> = () =>{
-    const data:BoxData[] = Array.from({ length: 20 }, () => new BoxData([box1,box2,box1,box2]));
+    const data:BoxData[] = Array.from({ length: 20 }, () => new BoxData([dummy,dummy,dummy]));
     
     const dispatch = useDispatch();
 
@@ -24,8 +25,6 @@ const BoxList:React.FC<{}> = () =>{
     function handlerMoreBtn(){
         if(data.length - nowData.length >=9){
             num.current +=1;
-            console.log(data.slice(0+(num.current*9),9+(num.current*9)))
-            console.log(nowData);
             setNowData((prevData) => [...prevData, ...data.slice(0+(num.current*9),9+(num.current*9))]);
         }else if(data.length - nowData.length < 8 && data.length - nowData.length >0){
             setNowData((prevData) => [...prevData, ...data.slice(num.current * 9, num.current * 9 + data.length - nowData.length)]);
