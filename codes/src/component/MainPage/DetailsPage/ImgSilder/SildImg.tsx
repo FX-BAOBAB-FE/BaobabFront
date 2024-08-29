@@ -2,19 +2,23 @@ import { useEffect, useRef, useState } from 'react';
 import Left from './Img/chevron-left.png';
 import Right from './Img/chevron-right.png';
 import ShowImg from './ShowImg';
+import { useSelector } from 'react-redux';
+import BoxDataObj from '../../../Types/BoxDataObj';
 
 const SildImg: React.FC<{}> = () => {
     const ImgRef = useRef<HTMLDivElement>(null);
     const [imgAdjust, setImgAdjust] = useState(0);
     const [currentIndex, setCurrentIndex] = useState(0);  // 현재 이미지를 추적하는 상태 변수
-    const storage = localStorage.getItem('Imgs');
-
-    let ImgArr: string[] = [];
-    if (storage) {
-        ImgArr = JSON.parse(storage);
-    }
-    console.log(ImgArr.length);
-
+    const [ImgArr, setImgArr] = useState<string[]>([]);
+    
+    useEffect(()=>{
+        const storage = localStorage.getItem('Imgs');
+        if (storage) {
+            setImgArr(JSON.parse(storage));
+        }
+        
+    },[])
+    
     function handlerLeftBtn() {
         if (ImgRef.current && currentIndex > 0) {
             const newIndex = currentIndex - 1;
@@ -31,6 +35,7 @@ const SildImg: React.FC<{}> = () => {
         }
     }
 
+    //동적 페이지크기 확인
     useEffect(() => {
         window.addEventListener('resize', () => {
             if (ImgRef.current) {
@@ -39,6 +44,7 @@ const SildImg: React.FC<{}> = () => {
         });
     }, []);
 
+    //동적 페이지 크기에 따라 계속 값 변경
     useEffect(() => {
         if (ImgRef.current) {
             ImgRef.current.style.transform = `translateX(${-ImgRef.current.offsetWidth * currentIndex}px)`;

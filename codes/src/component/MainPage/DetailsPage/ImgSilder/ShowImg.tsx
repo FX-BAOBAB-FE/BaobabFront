@@ -6,7 +6,6 @@ import { forwardRef, useEffect, useRef, useState } from "react";
 const ShowImg = forwardRef<HTMLDivElement>((props,ref) => {
     const {urlId} = useParams();
     const datas = useSelector((state:BoxDataObj[]) => state);
-
     const saveStorage = localStorage.getItem('Imgs');
 
     let Img:string[] = [];
@@ -23,14 +22,14 @@ const ShowImg = forwardRef<HTMLDivElement>((props,ref) => {
                 localStorage.setItem('Imgs', JSON.stringify(ImgIndex.img))
             }
         }
-    },[Img])
+    },[datas,urlId])
 
     if(saveStorage){
         Img= JSON.parse(saveStorage);
     }else{
         console.log("Not found!");
     }
-    console.log(Img.length);
+
     return(
         <div className='w-[65%] h-[40rem] mt-10 flex overflow-hidden rounded-xl'>
             <div ref={ref} className="relative flex">
