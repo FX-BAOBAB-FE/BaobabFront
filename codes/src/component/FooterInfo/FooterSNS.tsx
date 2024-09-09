@@ -18,8 +18,11 @@ const FooterSNS:React.FC<{}> = () =>{
                     <img  src={youtube} alt="youtube" />
                 </div>
                 <form className='flex'>
-                    <input className='pl-5 w-[14rem] h-[3rem] bg-white rounded-l-xl' type='text' placeholder='Your email address'/>
-                    <button className=' w-[7rem] rounded-r-xl bg-[#343A40] text-white' type='submit'>Subscribe</button>
+                    <input className='pl-5 w-[14rem] h-[3rem] bg-white rounded-l-xl' 
+                    type='text' placeholder='Your email address'/>
+                    <button className=' w-[7rem] rounded-r-xl bg-[#343A40] text-white' type='submit'>
+                        Subscribe
+                    </button>
                 </form>
             </div>
         </div>

@@ -9,7 +9,10 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setBoxData,convertBoxData } from '../reduxData/dataProducer';
 const BoxList:React.FC<{}> = () =>{
-    const data:BoxData[] = Array.from({ length: 20 }, () => new BoxData([dummy,dummy,dummy]));
+    const data:BoxData[] = Array.from(
+        { length: 20 },
+        () => new BoxData([dummy,dummy,dummy])
+    );
     
     const dispatch = useDispatch();
 
@@ -25,9 +28,15 @@ const BoxList:React.FC<{}> = () =>{
     function handlerMoreBtn(){
         if(data.length - nowData.length >=9){
             num.current +=1;
-            setNowData((prevData) => [...prevData, ...data.slice(0+(num.current*9),9+(num.current*9))]);
+            setNowData(
+                (prevData) => 
+                    [...prevData, ...data.slice(0+(num.current*9),9+(num.current*9))]
+            );
         }else if(data.length - nowData.length < 8 && data.length - nowData.length >0){
-            setNowData((prevData) => [...prevData, ...data.slice(num.current * 9, num.current * 9 + data.length - nowData.length)]);
+            setNowData(
+                (prevData) => 
+                    [...prevData, ...data.slice(num.current * 9, num.current * 9 + data.length - nowData.length)]
+            );
             setBtnCheck(true);
         }
     }
@@ -35,7 +44,11 @@ const BoxList:React.FC<{}> = () =>{
     return(
         <div className='w-full h-full flex justify-center flex-col items-center'>
             <div className='w-[80%] h-full grid grid-cols-[repeat(auto-fit,minmax(25rem,1fr))] gap-10 text-center'>
-                {nowData.map((dataObj)=>{return <Link key={dataObj.id} to={`/box/${dataObj.id}`}><Box Src={dataObj.img[0]} /></Link>})}
+                {nowData.map(
+                    (dataObj)=>
+                        {return <Link key={dataObj.id} to={`/box/${dataObj.id}`}><Box Src={dataObj.img[0]} /></Link>}
+                    )
+                }
             </div>
             <MoreBtn handlerMoreBtn={handlerMoreBtn} btnCheck={btnCheck}/>
         </div>
