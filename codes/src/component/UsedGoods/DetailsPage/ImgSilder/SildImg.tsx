@@ -2,8 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import Left from './Img/chevron-left.png';
 import Right from './Img/chevron-right.png';
 import ShowImg from './ShowImg';
-import { useSelector } from 'react-redux';
-import BoxDataObj from '../../../Types/BoxDataObj';
 
 const SildImg: React.FC<{}> = () => {
     const ImgRef = useRef<HTMLDivElement>(null);

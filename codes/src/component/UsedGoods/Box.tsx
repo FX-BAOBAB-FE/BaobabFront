@@ -1,6 +1,4 @@
 import React from 'react'
-import Dummy from '../../Img/dummy.png'
-import BoxData from './BoxData';
 const Box:React.FC<{Src:string}> = (props)=>{
     return(
             <div className='w-full h-[28rem] rounded-xl mt-14 text-center bg-white'>

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import BoxDataObj from "../../../Types/BoxDataObj";
-import { forwardRef, useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect} from "react";
 
 const ShowImg = forwardRef<HTMLDivElement>((props,ref) => {
     const {urlId} = useParams();
