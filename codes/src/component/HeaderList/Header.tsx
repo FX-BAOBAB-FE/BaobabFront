@@ -4,9 +4,14 @@ import Register from '../../Img/user-plus.png'
 import Btn from './HeaderBtn'
 import HeaderHambuger from './HeaderHambuger'
 import { Link, Outlet } from 'react-router-dom'
+import HambugerObj from '../Types/HambugerObj'
 
 const Header:React.FC<{}> = ()=>{
-    const List = ['UsedGoodsDeal', 'Calc','Analyze','Help'];
+    const List:HambugerObj[] = [{
+        name:'UsedGoodsDeal',location:'/UsedGoodsDeal'}
+        , {name:'Calc',location:'/'}
+        ,{name:'Analyze',location:'/'}
+        ,{name:'Help',location:'/'}];
     return(
         <>
             <div className="w-full h-20 flex justify-center bg-[#4C6EF5] text-white">

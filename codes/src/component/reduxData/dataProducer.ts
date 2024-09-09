@@ -1,5 +1,5 @@
 import { PayloadAction, configureStore, createSlice } from "@reduxjs/toolkit";
-import BoxData from "../MainPage/BoxData";
+import BoxData from "../UsedGoods/BoxData";
 import BoxDataObj from "../Types/BoxDataObj";
 
 const initialState:BoxDataObj[] = [];
