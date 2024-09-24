@@ -7,16 +7,16 @@ import DetailsBoxPage from './component/UsedGoods/DetailsPage/DetailsBoxPage';
 import { Provider } from 'react-redux';
 import store from './component/reduxData/dataProducer';
 import FinalMainPage from './component/MainPage/FinalMainPage';
-
+import { Loader as ImgLoader } from './component/UsedGoods/DetailsPage/ImgSilder/ShowImg';
 const router = createBrowserRouter([
   {
     path:'/',
     element:<Header/>,
     errorElement: <ErrorOccured/>,
     children:[
-      {path:'/UsedGoodsDeal', element:<Final/>},
-      {path:'/', element:<FinalMainPage/>},
-      {path:'/box/:urlId', element:<DetailsBoxPage/>}
+      {index:true, element:<FinalMainPage/>},
+      {path:'/UsedGoodsDeal', element:<Final/>,},
+      {path:'/UsedGoodsDeal/:urlId', element:<DetailsBoxPage/>, loader:ImgLoader}
     ]
   }]);
 

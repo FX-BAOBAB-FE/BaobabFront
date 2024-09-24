@@ -4,13 +4,6 @@ import BoxDataObj from "../Types/BoxDataObj";
 
 const initialState:BoxDataObj[] = [];
 
-function convertBoxData(obj:BoxData){
-    return{
-        id:obj.id,
-        img:obj.img
-    }
-}
-
 const actionBox = createSlice(
     {
         name:'box',
@@ -30,4 +23,3 @@ const store = configureStore({
 })
 
 export default store;
-export {convertBoxData};

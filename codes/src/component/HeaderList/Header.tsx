@@ -9,7 +9,7 @@ import HambugerObj from '../Types/HambugerObj'
 const Header:React.FC<{}> = ()=>{
     const List:HambugerObj[] = [{
         name:'UsedGoodsDeal',location:'/UsedGoodsDeal'}
-        , {name:'Calc',location:'/'}
+        ,{name:'Calc',location:'/'}
         ,{name:'Analyze',location:'/'}
         ,{name:'Help',location:'/'}];
     return(

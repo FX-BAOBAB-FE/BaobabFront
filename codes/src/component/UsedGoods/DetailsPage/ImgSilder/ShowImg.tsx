@@ -1,39 +1,25 @@
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { redirect, useLoaderData, useParams } from "react-router-dom";
 import BoxDataObj from "../../../Types/BoxDataObj";
 import { forwardRef, useEffect} from "react";
 
 const ShowImg = forwardRef<HTMLDivElement>((props,ref) => {
     const {urlId} = useParams();
-    const datas = useSelector((state:BoxDataObj[]) => state);
-    const saveStorage = localStorage.getItem('Imgs');
+    const datas = useSelector((state:BoxDataObj) => state);
+    const storedData = useLoaderData() as string[];
 
-    let Img:string[] = [];
     useEffect(()=>{
-        const id = parseInt(urlId || '1');
         //새로고침을 할 경우 datas가 초기화됨.
-        if(datas.length > 0){
-            const ImgIndex = datas[datas.findIndex(data => {
-                return data.id === id
-            }
-            )]
+        if(datas.img){
             //mac에서 control 좌우로 입력할 경우 ImgIndex가 undefined가 되버림.
-            if(ImgIndex){
-                localStorage.setItem('Imgs', JSON.stringify(ImgIndex.img))
-            }
+            localStorage.setItem('Imgs', JSON.stringify(datas.img));
         }
     },[datas,urlId])
-
-    if(saveStorage){
-        Img= JSON.parse(saveStorage);
-    }else{
-        console.log("Not found!");
-    }
 
     return(
         <div className='w-[65%] h-[40rem] mt-10 flex overflow-hidden rounded-xl'>
             <div ref={ref} className="relative flex">
-                {Img.map((data,index) => <img key={index} className='w-full h-full ' 
+                {storedData.map((data,index) => <img key={index} className='w-full h-full ' 
                 src={data} alt="not found box" />)}
             </div>
             
@@ -42,3 +28,15 @@ const ShowImg = forwardRef<HTMLDivElement>((props,ref) => {
 })
 
 export default ShowImg;
+
+export function Loader(){
+    const Img = localStorage.getItem('Imgs')
+    if(Img){
+        try{
+            const data = JSON.parse(Img);
+            return data;
+        }catch(e){
+            alert("이미지가 없음");
+        }
+    }
+}
