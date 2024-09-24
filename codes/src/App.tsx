@@ -1,11 +1,12 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.css';
-import Final from './component/MainPage/Final';
+import Final from './component/UsedGoods/Final';
 import Header from './component/HeaderList/Header';
 import ErrorOccured from './component/ErrorPage/ErrorOccured';
-import DetailsBoxPage from './component/MainPage/DetailsPage/DetailsBoxPage';
+import DetailsBoxPage from './component/UsedGoods/DetailsPage/DetailsBoxPage';
 import { Provider } from 'react-redux';
 import store from './component/reduxData/dataProducer';
+import FinalMainPage from './component/MainPage/FinalMainPage';
 
 const router = createBrowserRouter([
   {
@@ -13,7 +14,8 @@ const router = createBrowserRouter([
     element:<Header/>,
     errorElement: <ErrorOccured/>,
     children:[
-      {path:'/', element:<Final/>},
+      {path:'/UsedGoodsDeal', element:<Final/>},
+      {path:'/', element:<FinalMainPage/>},
       {path:'/box/:urlId', element:<DetailsBoxPage/>}
     ]
   }]);
