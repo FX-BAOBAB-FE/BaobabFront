@@ -5,7 +5,7 @@ import Header from './component/HeaderList/Header';
 import ErrorOccured from './component/ErrorPage/ErrorOccured';
 import DetailsBoxPage from './component/UsedGoods/DetailsPage/DetailsBoxPage';
 import { Provider } from 'react-redux';
-import store from './component/reduxData/dataProducer';
+import store from './component/reduxData/index';
 import FinalMainPage from './component/MainPage/FinalMainPage';
 import { Loader as ImgLoader } from './component/UsedGoods/DetailsPage/ImgSilder/ShowImg';
 const router = createBrowserRouter([

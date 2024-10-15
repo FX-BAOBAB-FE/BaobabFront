@@ -17,7 +17,8 @@ const BoxList:React.FC<{}> = () =>{
     const dispatch = useDispatch();
     
     useEffect(()=>{
-        data.map((dat) => {dispatch(boxAction.setBoxData(dat.showData()));})
+        data.map((dat) => {
+            dispatch(boxAction.setBoxData(dat.showData()));})
     },[dispatch,data]);
 
     const [nowData,setNowData] = useState(data.slice(0,6));

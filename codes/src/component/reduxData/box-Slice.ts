@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import BoxDataObj from "../Types/BoxDataObj";
 
-const initialState:BoxDataObj[] = [];
+const boxInitial:Object[] = [];
 
 const boxSlice = createSlice({
     name:'box',
-    initialState,
+    initialState:boxInitial,
     reducers:{
         setBoxData: (state,action) =>{
             const data = action.payload;

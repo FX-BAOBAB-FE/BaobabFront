@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import boxSlice, { boxAction } from "./box-Slice";
+import boxSlice from "./box-Slice";
 
 
 const store = configureStore({
-    reducer:boxSlice.reducer
+    reducer:{box:boxSlice.reducer,}
 })
 
 export default store;
