@@ -8,7 +8,9 @@ const ShowImg = forwardRef<HTMLDivElement>((props,ref) => {
     let datas = useSelector((state: { box: BoxDataObj[] }) => {
         return state.box
     });
+    console.log(datas)
     const storedData = useLoaderData() as string[];
+    console.log(storedData);
 
     useEffect(() => {
         if(urlId){

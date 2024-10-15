@@ -8,7 +8,6 @@ import BoxData from './BoxData'
 import { Link, useLoaderData } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { boxAction } from '../reduxData/box-Slice';
-import BoxDataObj from '../Types/BoxDataObj';
 const BoxList:React.FC<{}> = () =>{
     const data:BoxData[] = Array.from(
         { length: 20 },
