@@ -5,7 +5,6 @@ import Btn from './HeaderBtn'
 import HeaderHambuger from './HeaderHambuger'
 import { Link, Outlet } from 'react-router-dom'
 import HambugerObj from '../Types/HambugerObj'
-
 const Header:React.FC<{}> = ()=>{
     const List:HambugerObj[] = [{
         name:'UsedGoodsDeal',location:'/UsedGoodsDeal'}

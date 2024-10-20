@@ -5,7 +5,7 @@ import TextImgComponent from './TextImgComponent';
 import Footer from '../FooterInfo/Footer';
 const FinalMainPage:React.FC<{}> = () =>{
     return(
-        <div className='bg h-full'>
+        <div className='h-full'>
             <div className='w-full flex flex-col items-center'>
                 <TextImgComponent>
                     <TextComponent/>

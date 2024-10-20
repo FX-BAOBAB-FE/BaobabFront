@@ -13,6 +13,6 @@
     font-family: 'Pretendard-Regular';
     box-sizing: border-box;
 }
-.bg{
+.bg > *{
     background-color: #F8F9FA;
 }

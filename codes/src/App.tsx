@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import store from './component/reduxData/index';
 import FinalMainPage from './component/MainPage/FinalMainPage';
 import { Loader as ImgLoader } from './component/UsedGoods/DetailsPage/ImgSilder/ShowImg';
+import FinalPlan from './component/PlanPage/FinalPlan';
 import FinalCal from './component/CalPage/FinalCal';
 const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
       {index:true, element:<FinalMainPage/>},
       {path:'/UsedGoodsDeal', element:<Final/>,},
       {path:'/UsedGoodsDeal/:urlId', element:<DetailsBoxPage/>, loader:ImgLoader},
+      {path:'PlanPage', element:<FinalPlan/>},
       {path:'Calculate', element:<FinalCal/>}
     ]
   }]);
