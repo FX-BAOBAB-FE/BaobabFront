@@ -5,7 +5,8 @@ import Btn from './HeaderBtn'
 import HeaderHambuger from './HeaderHambuger'
 import { Link, Outlet } from 'react-router-dom'
 import HambugerObj from '../Types/HambugerObj'
-const Header:React.FC<{}> = ()=>{
+
+export default function Header(){
     const List:HambugerObj[] = [{
         name:'UsedGoodsDeal',location:'/UsedGoodsDeal'}
         ,{name:'Calc',location:'/Calculate'}
@@ -27,5 +28,3 @@ const Header:React.FC<{}> = ()=>{
         </>
     )
 }
-
-export default Header;

@@ -8,7 +8,7 @@ import BoxData from './BoxData'
 import { Link, useLoaderData } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { boxAction } from '../reduxData/box-Slice';
-const BoxList:React.FC<{}> = () =>{
+export default function BoxList(){
     const data:BoxData[] = Array.from(
         { length: 20 },
         () => new BoxData([dummy,dummy,dummy])
@@ -53,5 +53,3 @@ const BoxList:React.FC<{}> = () =>{
         </div>
     )
 }
-
-export default BoxList;

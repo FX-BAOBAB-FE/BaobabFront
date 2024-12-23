@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '../HeaderList/Header';
 
-const ErrorOccured:React.FC<{}> = ()=>{
+export default function ErrorOccured(){
     return(
         <div>
             <Header/>
@@ -9,6 +9,3 @@ const ErrorOccured:React.FC<{}> = ()=>{
         </div>
     )
 }
-
-
-export default ErrorOccured;

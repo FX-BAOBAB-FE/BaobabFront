@@ -3,7 +3,7 @@ import Left from './Img/chevron-left.png';
 import Right from './Img/chevron-right.png';
 import ShowImg from './ShowImg';
 
-const SildImg: React.FC<{}> = () => {
+export default function SildImg(){
     const ImgRef = useRef<HTMLDivElement>(null);
     const [imgAdjust, setImgAdjust] = useState(0);
     const [currentIndex, setCurrentIndex] = useState(0);  // 현재 이미지를 추적하는 상태 변수
@@ -71,6 +71,4 @@ const SildImg: React.FC<{}> = () => {
             </div>
         </div>
     );
-};
-
-export default SildImg;
+}

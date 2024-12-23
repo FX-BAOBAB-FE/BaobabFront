@@ -3,7 +3,7 @@ import IntroImg from './IntroImg';
 import BoxList from './BoxList';
 import Footer from '../FooterInfo/Footer';
 
-const Final:React.FC<{}> = () =>{
+export default function Final(){
     return(
         <div className='bg'>
             <IntroImg/>
@@ -12,5 +12,3 @@ const Final:React.FC<{}> = () =>{
         </div>
     )
 }
-
-export default Final;

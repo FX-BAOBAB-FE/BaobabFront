@@ -4,8 +4,7 @@ import appstore from '../../Img/appstore.png'
 import Btn from './MainBtn'
 import box from '../../Img/MainImg.png'
 
-
-const IntroImg:React.FC<{}> = ()=>{
+export default function IntroImg(){
     return(
         <div className='w-full h-96 bg-[#DBE4FF] flex justify-center'>
             <div className='w-[80%] flex justify-between items-center'>
@@ -30,5 +29,3 @@ const IntroImg:React.FC<{}> = ()=>{
         </div>
     )
 }
-
-export default IntroImg;

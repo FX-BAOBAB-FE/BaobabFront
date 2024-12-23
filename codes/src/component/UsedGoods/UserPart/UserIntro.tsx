@@ -7,7 +7,6 @@ export default function UserIntro(){
             <ProfileDate />
             <hr className="w-full h-1 mt-2 mb-3"/>
             <UserContext />
-
         </div>
     )
 }

@@ -1,8 +1,8 @@
 import React from 'react'
 import FooterSNS from './FooterSNS'
 import FooterAddr from './FooterAddr'
-const Footer:React.FC<{}> = ()=>{
-    
+
+export default function Footer(){
     return(
         <div>
             <FooterSNS/>
@@ -10,5 +10,3 @@ const Footer:React.FC<{}> = ()=>{
         </div>
     )
 }
-
-export default Footer

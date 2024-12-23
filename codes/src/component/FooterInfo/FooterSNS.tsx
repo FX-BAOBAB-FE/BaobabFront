@@ -3,7 +3,8 @@ import faceBook from '../../Img/Facebook - Negative.png'
 import twitter from '../../Img/Twitter - Negative.png'
 import instagram from '../../Img/Instagram - Negative.png'
 import youtube from '../../Img/YouTube - Negative.png'
-const FooterSNS:React.FC<{}> = () =>{
+
+export default function FooterSNS(){
     return(
         <div className='w-full h-32 flex flex-col items-center mt-20'>
             <div className='w-[30%] flex justify-between'>
@@ -28,5 +29,3 @@ const FooterSNS:React.FC<{}> = () =>{
         </div>
     )
 }
-
-export default FooterSNS

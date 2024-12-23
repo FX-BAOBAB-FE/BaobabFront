@@ -1,6 +1,7 @@
 import React from 'react';
 
-const FooterAddr:React.FC<{}> = ()=>{
+
+export default function FooterAddr(){
     return(
         <div className='bg-[#495057] w-full h-[15rem] flex justify-evenly items-center flex-col text-white'>
             <ul className='flex w-[38%] justify-between'>
@@ -21,5 +22,3 @@ const FooterAddr:React.FC<{}> = ()=>{
         </div>
     )
 }
-
-export default FooterAddr
