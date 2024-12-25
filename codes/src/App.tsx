@@ -14,11 +14,11 @@ const router = createBrowserRouter([
   {
     path:'/',
     element:<Header/>,
-    errorElement: <ErrorOccured/>,
+    
     children:[
       {index:true, element:<FinalMainPage/>},
       {path:'/UsedGoodsDeal', element:<Final/>,},
-      {path:'/UsedGoodsDeal/:urlId', element:<DetailsBoxPage/>, loader:ImgLoader},
+      {path:'/UsedGoodsDeal/:urlId', element:<DetailsBoxPage/>, },
       {path:'PlanPage', element:<FinalPlan/>},
       {path:'Calculate', element:<FinalCal/>}
     ]

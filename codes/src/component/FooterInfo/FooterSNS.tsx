@@ -6,7 +6,7 @@ import youtube from '../../Img/YouTube - Negative.png'
 
 export default function FooterSNS(){
     return(
-        <div className='w-full h-32 flex flex-col items-center mt-20'>
+        <div className='w-full h-32 flex flex-col items-center'>
             <div className='w-[30%] flex justify-between'>
                 <p className='w-28 mr-32 text-[#868E96] font-bold'>Follow us</p>
                 <p className='w-52 text-[#868E96] font-bold'>Get the Newsletter</p>

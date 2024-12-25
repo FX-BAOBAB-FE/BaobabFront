@@ -1,19 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
+import BoxDataObj from '../Types/BoxDataObj'
 
-const boxInitial:Object[] = [];
+const boxInitial:BoxDataObj[] = [];
 
 const boxSlice = createSlice({
     name:'box',
     initialState:boxInitial,
     reducers:{
         setBoxData: (state,action) =>{
-            const data = action.payload;
-            state.push(data);
-        }
+            state.push(action.payload);
+        },
     }
 
 })
 
 export const boxAction = boxSlice.actions;
 
-export default boxSlice;
+export const boxRedux = boxSlice.reducer;

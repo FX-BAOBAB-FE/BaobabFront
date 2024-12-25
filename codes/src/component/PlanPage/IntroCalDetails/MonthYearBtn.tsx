@@ -1,8 +1,5 @@
-interface onChanged{
-    onMonth:() => void;
-    onYear:() => void;
-    dateCheck:number
-}
+import { onChanged } from "../../Types/onChanged";
+
 export default function MonthYearBtn({onMonth, onYear,dateCheck}:onChanged){
     return(
         <div className="flex w-1/4 h-12 mb-10 justify-center items-center rounded-xl border-2">

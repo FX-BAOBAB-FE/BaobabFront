@@ -9,16 +9,18 @@ import { Link, useLoaderData } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { boxAction } from '../reduxData/box-Slice';
 export default function BoxList(){
+    //data부분은 나중에 서버와 연결하여 axios로 대체할거임
     const data:BoxData[] = Array.from(
         { length: 20 },
         () => new BoxData([dummy,dummy,dummy])
     );
     const dispatch = useDispatch();
-    
-    useEffect(()=>{
-        data.map((dat) => {
-            dispatch(boxAction.setBoxData(dat.showData()));})
-    },[dispatch,data]);
+    data.map((dat) => {
+        dispatch(boxAction.setBoxData(dat.showData()));})
+    // useEffect(()=>{
+    //     data.map((dat) => {
+    //         dispatch(boxAction.setBoxData(dat.showData()));})
+    // },[dispatch,data]);
 
     const [nowData,setNowData] = useState(data.slice(0,6));
     const num = useRef(0);

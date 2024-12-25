@@ -1,8 +1,4 @@
-interface PJVal{
-    title:string,
-    value:string,
-    color:string,
-}
+import { PJVal } from "../../Types/PJVal";
 
 export default function ProjectInfoDetail({title,value,color}:PJVal){
     let WidthSize = '';

@@ -2,13 +2,23 @@ import { useEffect, useRef, useState } from 'react';
 import Left from './Img/chevron-left.png';
 import Right from './Img/chevron-right.png';
 import ShowImg from './ShowImg';
+import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import BoxDataObj from '../../../Types/BoxDataObj';
 
 export default function SildImg(){
     const ImgRef = useRef<HTMLDivElement>(null);
     const [imgAdjust, setImgAdjust] = useState(0);
     const [currentIndex, setCurrentIndex] = useState(0);  // 현재 이미지를 추적하는 상태 변수
     const [ImgArr, setImgArr] = useState<string[]>([]);
-    
+    const {urlId} = useParams();
+    //const storedData = useLoaderData() as string[]
+    const findData = useSelector((state: any) =>
+        state.box.filter((idx:BoxDataObj)=> idx.id == urlId)
+    );
+    const data = findData[0]
+    const storedData = data.img
+    console.log(ImgRef.current)
     useEffect(()=>{
         const storage = localStorage.getItem('Imgs');
         if (storage) {
@@ -55,7 +65,12 @@ export default function SildImg(){
                 <button disabled={currentIndex <= 0} onClick={handlerLeftBtn}>
                     <img src={Left} alt='Left cursor' />
                 </button>
-                <ShowImg ref={ImgRef} />
+                <div className='w-[65%] h-[40rem] mt-10 flex overflow-hidden rounded-xl'>
+                    <div ref={ImgRef} className="relative flex">
+                        {storedData.map((data:any,index:number) => <img key={index} className='w-full h-full ' 
+                        src={data} alt="not found box" />)}
+                    </div>
+                </div>
                 <button disabled={currentIndex >= ImgArr.length - 1} onClick={handlerRightBtn}>
                     <img src={Right} alt='Right cursor' />
                 </button>

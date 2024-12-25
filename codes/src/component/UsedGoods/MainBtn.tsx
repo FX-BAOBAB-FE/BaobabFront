@@ -1,8 +1,5 @@
 import React from 'react';
-type BtnType = {
-    Src:string,
-    children:string
-}
+import { BtnType } from '../Types/BtnType';
 
 export default function Btn({Src,children}:BtnType){
     return(

@@ -2,7 +2,7 @@ import React from 'react'
 
 interface BoxProps {
     Src: string;
-  }
+}
 export default function Box({Src}:BoxProps){
     return(
         <div className='w-full h-[28rem] rounded-xl mt-14 text-center bg-white'>
