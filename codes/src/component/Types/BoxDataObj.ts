@@ -1,5 +1,5 @@
 interface BoxDataObj{
-    id:string;
+    id:number;
     img:string[];
 }
 
