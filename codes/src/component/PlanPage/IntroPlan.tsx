@@ -12,7 +12,7 @@ export default function IntroPlan(){
         setDateCheck(2);
     }
     return(
-        <div className="w-full flex justify-center">
+        <div className="w-full flex justify-center pb-20">
             <div className="w-[70%] h-full flex items-center flex-col">
                 <h3 className="text-6xl font-bold my-10">
                     Choose your plan
