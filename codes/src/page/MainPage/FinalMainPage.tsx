@@ -1,8 +1,7 @@
-import React from 'react';
-import TextComponent from './TextComponent';
+import TextComponent from '../../component/MainPage/TextComponent';
 import MainImg from './Img/img.png'
-import TextImgComponent from './TextImgComponent';
-import Footer from '../FooterInfo/Footer';
+import TextImgComponent from '../../component/MainPage/TextImgComponent';
+import Footer from '../../component/FooterInfo/Footer';
 
 export default function FinalMainPage(){
     return(

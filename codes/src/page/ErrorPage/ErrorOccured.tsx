@@ -1,5 +1,4 @@
-import React from 'react'
-import Header from '../HeaderList/Header';
+import Header from "../../component/HeaderList/Header"
 
 export default function ErrorOccured(){
     return(
