@@ -7,7 +7,7 @@ import GlobalStyles from './styles/GlobalStyles';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-
+console.log('asd');
 root.render(
   <React.StrictMode>
     <GlobalStyles/>
