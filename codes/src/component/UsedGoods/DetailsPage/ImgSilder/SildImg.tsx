@@ -13,20 +13,12 @@ export default function SildImg(){
     const comparId = parseInt(urlId || '0');
     
     const findData = useSelector((state: any) =>
-        state.box.filter((idx:BoxDataObj)=> idx.id == comparId)
+        state.box.filter((idx:BoxDataObj)=> idx.id === comparId)
     );
     //findData => [[data]] 형식으로 저장되기 때문에 findData[0]으로 둠.
     const data = findData[0]
     let storedData:string[] = data.img
 
-    useEffect(()=>{
-        if(!localStorage.getItem('SildImg')){
-            localStorage.setItem("SildImg", data)
-        }else{
-            const a = localStorage.getItem('SildImg')
-            console.log(a);
-        }
-    },[])
     function handlerLeftBtn() {
         if (ImgRef.current && currentIndex > 0) {
             const newIndex = currentIndex - 1;
