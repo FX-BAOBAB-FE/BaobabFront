@@ -1,12 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
-import box1 from '../../Img/7809915.jpg'
-import box2 from '../../Img/7844745.jpg'
+import { useEffect, useRef, useState } from 'react'
 import dummy from '../../Img/dummy.png'
 import Box from './Box';
 import MoreBtn from './MoreBtn';
 import BoxData from './BoxData'
-import { Link, useLoaderData } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { boxAction } from '../reduxData/box-Slice';
 export default function BoxList(){
     //data부분은 나중에 서버와 연결하여 axios로 대체할거임
@@ -19,7 +17,7 @@ export default function BoxList(){
     useEffect(()=>{
         data.map((dat) => {
             dispatch(boxAction.setBoxData(dat.showData()));})
-    },[data]);
+    },[data, dispatch]);
 
     const [nowData,setNowData] = useState(data.slice(0,6));
     const num = useRef(0);
