@@ -7,11 +7,12 @@ import { Link, Outlet } from 'react-router-dom'
 import HambugerObj from '../Types/HambugerObj'
 
 export default function Header(){
-    const List:HambugerObj[] = [{
-        name:'UsedGoodsDeal',location:'/UsedGoodsDeal'}
+    const List:HambugerObj[] = [
+        {name:'UsedGoodsDeal',location:'/UsedGoodsDeal'}
         ,{name:'Calc',location:'/Calculate'}
         ,{name:'Analyze',location:'/'}
         ,{name:'Help',location:'/'}];
+
     return(
         <>
             <div className="w-full h-20 flex justify-center bg-[#4C6EF5] text-white">
@@ -19,8 +20,8 @@ export default function Header(){
                 <Link to="/"><h3 className="text-3xl font-bold mr-[4rem]">BAOBAB</h3></Link>
                     <HeaderHambuger List={List}/>
                     <div className="flex pl-[4rem]">
-                        <HeaderBtn Src={Sign} >Sign up</HeaderBtn>
-                        <HeaderBtn Src={Register}>Register</HeaderBtn>
+                        <Link to={'Login'}> <HeaderBtn Src={Sign}>Sign up</HeaderBtn></Link>
+                        <Link to={'Agree'}><HeaderBtn Src={Register}>Register</HeaderBtn></Link>
                     </div>
                 </div>
             </div>

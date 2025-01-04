@@ -11,6 +11,9 @@ import FinalPlan from './page/PlanPage/FinalPlan';
 import FinalCal from './page/CalPage/FinalCal';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
+import AgreeFinal from './page/RegisterPage/AgreeFinal';
+import LoginFinal from './page/LoginPage/LoginFinal';
+import RegisterFinal from './page/RegisterPage/RegisterFinal';
 const router = createBrowserRouter([
   {
     path:'/',
@@ -21,7 +24,10 @@ const router = createBrowserRouter([
       {path:'/UsedGoodsDeal', element:<Final/>,},
       {path:'/UsedGoodsDeal/:urlId', element:<DetailsBoxPage/>, },
       {path:'PlanPage', element:<FinalPlan/>},
-      {path:'Calculate', element:<FinalPlan/>}
+      {path:'Calculate', element:<FinalPlan/>},
+      {path:'Agree' , element:<AgreeFinal/>},
+      {path:'Agree/Register', element:<RegisterFinal/>},
+      {path:'Login', element:<LoginFinal/>},
     ]
   }]);
 
