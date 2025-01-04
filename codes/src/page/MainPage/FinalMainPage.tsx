@@ -9,10 +9,10 @@ export default function FinalMainPage(){
             <div className='w-full flex flex-col items-center'>
                 <TextImgComponent>
                     <TextComponent/>
-                    <img src={MainImg} />
+                    <img src={MainImg} alt="MainPage이미지"/>
                 </TextImgComponent>
                 <TextImgComponent>
-                    <img src={MainImg} />
+                    <img src={MainImg} alt="MainPage이미지"/>
                     <TextComponent/>
                 </TextImgComponent>
             </div>
