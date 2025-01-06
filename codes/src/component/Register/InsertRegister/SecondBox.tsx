@@ -6,12 +6,14 @@ import FInput from './FInput'
 import ChooseBtn from './ChooseBtn'
 import WireInput from './WireInput'
 import { useRef, useState } from 'react'
+import AllAgree from './AllAgree'
 export default function SecondBox(){
     const nameRef = useRef<HTMLInputElement>(null);
     const birthRef = useRef<HTMLInputElement>(null);
     const phoneRef = useRef<HTMLInputElement>(null);
     const [sex,setSex] = useState('');
     const [foreigner, setForeigner] = useState('');
+    const [agree,setAgree] = useState(false);
 
     const selectM=() =>{
         setSex('males')
@@ -36,6 +38,10 @@ export default function SecondBox(){
     const focusPhone = ()=>{
         phoneRef.current?.focus();
     }
+
+    const handleAgree = () =>{
+        setAgree(!agree);
+    }
     return(
         <div className="w-[35rem] h-[20rem] border-x-2 rounded-md">
             <FInput Src={person} Type="text" Alt='이름' ref={nameRef} onClick={focusName} props={["border-t-2"]}/>
@@ -46,9 +52,7 @@ export default function SecondBox(){
                 <ChooseBtn List={['내국인','외국인']} State={foreigner} One={selectI} Two={selectO}></ChooseBtn>
             </div>
             <FInput Src={smartphone} Type="text" Alt='휴대전화번호' ref={phoneRef} onClick={focusPhone} props={["border-b-2"]}/>
-            <div className='h-[4rem] flex'>
-    
-            </div>
+            <AllAgree state={agree} handleAgree={handleAgree} />
         </div>
     )
 }
