@@ -18,7 +18,6 @@ const router = createBrowserRouter([
   {
     path:'/',
     element:<Header/>,
-    
     children:[
       {index:true, element:<FinalMainPage/>},
       {path:'/UsedGoodsDeal', element:<Final/>,},
@@ -31,6 +30,7 @@ const router = createBrowserRouter([
     ]
   }]);
 
+  console.log("ASD");
 export let persistor = persistStore(store);
 function App() {
   return (
