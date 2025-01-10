@@ -1,19 +1,19 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { persistReducer } from "redux-persist";
-import storageSession from "redux-persist/lib/storage/session"; 
+import storageSession from "redux-persist/lib/storage/session";
 import rootReducer from "./rootReducer";
 
-//whileList에 있는 key값을 sessionStorage로 사용함.
+// `whitelist`에 있는 키값만 sessionStorage에 저장
 const persistConfig = {
-    key:'root',
-    storage:storageSession,
-    whilelist:['box']
-}
+    key: 'root',
+    storage: storageSession,
+    whitelist: ['box'] // "box" 상태만 저장
+};
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
-    reducer:persistedReducer
-})
+    reducer: persistedReducer,
+});
 
 export default store;

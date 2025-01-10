@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { RegisterBtn } from "../../Types/BtnType";
+import connection from './Img/connection.png'
 import arrow_down from './Img/arrow_down.png'
 import arrow_up from './Img/arrow_up.png'
-export default function WireInput({Src, props=[]}:RegisterBtn){
+import { useDispatch } from "react-redux";
+import { userAction } from "../../reduxData/user-Slice";
+export default function WireInput(){
+    const dispatch = useDispatch();
+
     const [isExpanded, setIsExpanded] = useState(false);
     const [selected, setSelected] = useState("통신사 선택");
 
@@ -11,15 +16,16 @@ export default function WireInput({Src, props=[]}:RegisterBtn){
 
         if(a.tagName=='LI'){
             setSelected(a.innerText);
-            setIsExpanded(false)
+            setIsExpanded(false);
+            dispatch(userAction.setInputs({name:'wire',value:a.innerText}))
         }
     }
     const toggleMenu = () => {
       setIsExpanded((prev) => !prev);
     };
     return(
-        <div className={`h-[4rem] w-full flex items-center ${props.join(' ')}`}>
-            <img src={Src} alt="통신사 선택" className='w-6 h-6 mx-3'/>
+        <div className={`h-[4rem] w-full flex items-center border-b-2 border-x-2`}>
+            <img src={connection} alt="통신사 선택" className='w-6 h-6 mx-3'/>
             <div className="flex">
                 <button aria-expanded={isExpanded} aria-controls="drop" onClick={toggleMenu}
                     className={`${selected !== '통신사 선택' ? 'text-black' : 'text-[#A9AFB9]'} w-[28rem] text-left`}

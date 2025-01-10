@@ -14,6 +14,11 @@ import { PersistGate } from 'redux-persist/integration/react';
 import AgreeFinal from './page/RegisterPage/AgreeFinal';
 import LoginFinal from './page/LoginPage/LoginFinal';
 import RegisterFinal from './page/RegisterPage/RegisterFinal';
+import Use from './page/RegisterPage/AllAgreeDetail/Use';
+import Identify from './page/RegisterPage/AllAgreeDetail/Identify';
+import Wire from './page/RegisterPage/AllAgreeDetail/Wire';
+import Certification from './page/RegisterPage/AllAgreeDetail/Certification';
+import Collect from './page/RegisterPage/AllAgreeDetail/Collect';
 const router = createBrowserRouter([
   {
     path:'/',
@@ -21,15 +26,21 @@ const router = createBrowserRouter([
     
     children:[
       {index:true, element:<FinalMainPage/>},
-      {path:'/UsedGoodsDeal', element:<Final/>,},
-      {path:'/UsedGoodsDeal/:urlId', element:<DetailsBoxPage/>, },
+      {path:'UsedGoodsDeal', element:<Final/>,},
+      {path:'UsedGoodsDeal/:urlId', element:<DetailsBoxPage/>, },
       {path:'PlanPage', element:<FinalPlan/>},
       {path:'Calculate', element:<FinalPlan/>},
       {path:'Agree' , element:<AgreeFinal/>},
       {path:'Agree/Register', element:<RegisterFinal/>},
       {path:'Login', element:<LoginFinal/>},
-    ]
-  }]);
+    ],
+  },
+  {path:'Agree/register/use', element:<Use/>},
+  {path:'Agree/register/identify', element:<Identify/>},
+  {path:'Agree/register/wire', element:<Wire/>},
+  {path:'Agree/register/certification', element:<Certification/>},
+  {path:'Agree/register/collect',element:<Collect/>}
+]);
 
 export let persistor = persistStore(store);
 function App() {
