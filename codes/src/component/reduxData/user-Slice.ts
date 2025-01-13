@@ -26,33 +26,5 @@ const userSlice= createSlice({
     }
 })
 
-const initialState:UserTypeMessage= {
-    idM:'',
-    passwordM:'',
-    emailM:'',
-    nameM:'',
-    birthM:'',
-    wireM:'',
-    sexM:'',
-    foreignerM:'',
-    phoneM:'',
-}
-const userCheckSlice = createSlice({
-    name:'check',
-    initialState:initialState,
-    reducers:{
-        setIdM(state,action){
-            const {name,value} = action.payload;
-            if(value == ""){
-                (state as any)[name] = "필수 정보입니다"
-            }else{
-
-            }
-        }
-    }
-})
 export const userAction = userSlice.actions
 export const userRedux = userSlice.reducer
-
-export const userCheckAction = userSlice.actions
-export const userCheckRedux = userSlice.reducer

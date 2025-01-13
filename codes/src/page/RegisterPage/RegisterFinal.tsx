@@ -9,17 +9,33 @@ export default function RegisterFinal(){
     const location = useLocation();
     const dispatch = useDispatch();
     const selector = useSelector((state:any) => state.user);
+    const [firstCheck,setFirstCheck] = useState(false);
+    const [secondCheck,setSecondCheck] = useState(false);
+    const [success, setSuccess] = useState(false)
+    const handleFisrtChange = (bool:boolean) => {
+        setFirstCheck(bool)
+    }
+    const handleSecondChange = (bool:boolean) => {
+        setSecondCheck(bool)
+    }
+    const handleClick = () => {
+        if(firstCheck && secondCheck){
+            setSuccess(false);
+        }else{
+            setSuccess(true);
+        }
+    }
     useEffect(()=>{
         dispatch(userAction.allRemove())
     },[location,dispatch])
     return(
         <div className="flex flex-col h-[60rem] items-center">
             <form onSubmit={(e) => {e.preventDefault();}}>
-                <FirstBox/>
-                <SecondBox/>
+                <FirstBox check={handleFisrtChange} bool={success}/>
+                <SecondBox check={handleSecondChange} bool={success}/>
                 <button className='w-[35rem] h-12 bg-[var(--logo-color)] rounded-lg
                 font-bold text-white mt-5'
-                onClick={() =>console.log(selector)}
+                onClick={handleClick}
                 >
                     인증 요청
                 </button>
