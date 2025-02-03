@@ -15,10 +15,18 @@ type ST = {
     bool:boolean,
 }
 export default function SecondBox({check,bool}:ST){
-    const [name,setName] = useState({message:'',check:false})
-    const [birth,setBirth] = useState({message:'',check:false})
-    const [phone,setPhone] = useState({message:'',check:false})
-    const [wireInfo, setWireInfo] = useState({message:'이용하는 통신사를 선택해 주세요',check:true})
+    const [name,setName] = useState<{ message: string; check?: boolean }>({
+        message: '필수 정보입니다',
+    });
+    const [birth,setBirth] = useState<{ message: string; check?: boolean }>({
+        message: '필수 정보입니다',
+    });
+    const [phone,setPhone] = useState<{ message: string; check?: boolean }>({
+        message: '필수 정보입니다',
+    });
+    const [wireInfo, setWireInfo] = useState<{ message: string; check?: boolean }>({
+        message: '이용하시는 통신사를 선택해주세요',
+    });
     const [sex,setSex] = useState('males');
     const [foreigner, setForeigner] = useState('inner');
     const [allAgree,setAllAgree] = useState({message:'',check:false});
@@ -97,21 +105,31 @@ export default function SecondBox({check,bool}:ST){
         if(check){setAllAgree({message:'',check:check});}
         else{setAllAgree({message:'필수 약관에 모두 동의해 주세요',check:check});}
     },[info,identify,wire,certification,collect])
+    useEffect(()=>{
+        if(name.check && birth.check && phone.check && wireInfo.check && allAgree.check){
+            check(true)
+        }else{
+            check(false)
+        }
+    },[name.check && birth.check && phone.check && wireInfo.check && allAgree.check])
     return(
         <div className="w-[35rem] rounded-md">
-            <FInput Src={Person} Alt='이름' name='name' onBlur={handleName} design={["border-t-2 rounded-t-md"]}/>
-            <FInput Src={Birth} Alt='생년월일8자리' name='birth' onBlur={handleBirth} design={["border-y-2"]}/>
-            <WireInput handler={handleWireState}/>
+            <FInput Src={Person} Alt='이름' name='name' onBlur={handleName} state={name.check} bool={bool}/>
+            <FInput Src={Birth} Alt='생년월일8자리' name='birth' onBlur={handleBirth} state={birth.check} bool={bool}/>
+            <WireInput handler={handleWireState} state={wireInfo.check} bool={bool}/>
             <div className='h-[4rem] flex p-2 justify-around border-b-2 border-x-2'>
                 <ChooseBtn List={['남자','여자']} State={sex} One={selectM} Two={selectF}></ChooseBtn>
                 <ChooseBtn List={['내국인','외국인']} State={foreigner} One={selectI} Two={selectO}></ChooseBtn>
             </div>
-            <FInput Src={Smartphone} Alt='휴대전화번호' name='phone' onBlur={handlePhone} design={["border-b-2 rounded-b-md"]}/>
-            <p>name : {name.message}</p>
-            <p>birth : {birth.message}</p>
-            <p>phone : {phone.message}</p>
-            <p>wire : {wireInfo.message}</p>
-            <p>agree : {allAgree.message}</p>
+            <FInput Src={Smartphone} Alt='휴대전화번호' name='phone' onBlur={handlePhone} state={phone.check} bool={bool}/>
+            {((bool && name.message.length > 1) || (!name.check && name.check !==undefined)) && 
+                <p className='text-red-500'>name : {name.message}</p>}
+            {((bool && birth.message.length > 1) || (!birth.check && birth.check !==undefined)) && 
+                <p className='text-red-500'>birth : {birth.message}</p>}
+            {((bool && phone.message.length > 1) || (!phone.check && phone.check !==undefined)) && 
+                <p className='text-red-500'>phone : {phone.message}</p>}
+            {((bool && wireInfo.message.length > 1) || (!wireInfo.check && wireInfo.check !==undefined)) && 
+                <p className='text-red-500'>wire : {wireInfo.message}</p>}
 
             <AllAgree stateOpen={isOpen} stateAgree={allAgree.check} handleAgree={handleAllAgree} handleIsOpen={handleIsOpen} />
             {isOpen && 
@@ -127,6 +145,8 @@ export default function SecondBox({check,bool}:ST){
                 <Agree state={collect} name='BAOBAB 개인정보수집' 
                     href='collect' onClick={handleCollect}/>
             </div>}
+            {(bool && allAgree.message.length > 1)  && 
+                <p className='text-red-500'>agree : {allAgree.message}</p>}
         </div>
     )
 }

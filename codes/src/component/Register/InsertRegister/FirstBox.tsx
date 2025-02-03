@@ -21,7 +21,6 @@ export default function FirstBox({check,bool}:Ft){
         message: '필수 정보입니다',
     });
     const dispatch = useDispatch();
-    console.log(id.check)
     const handleId = (e:React.FocusEvent<HTMLInputElement>) => {
         const value = e.target.value
         if(value === ''){
@@ -53,16 +52,19 @@ export default function FirstBox({check,bool}:Ft){
             check(false)
         }
     },[id.check,password.check,email.check])
-
+    console.log(email.check)
     return(
         <div className="w-[35rem] h-[16.5rem] rounded-md mb-3 flex flex-col mt-14">
             <FInput Src={person} name="id" Alt='아이디' 
-                onBlur={handleId} design={["border-t-2 rounded-t-md "]} />
-            <PassInput onBlur={handlePassword}/>
-            <EmailInput handleChange={handleEmail}/>
-            {(bool || (!id.check&& id.check !==undefined)) && <p>id: {id.message}</p> }
-            {(bool || (!password.check && password.check !==undefined)) && <p>password: {password.message}</p> }
-            {(bool || (!email.check && email.check !==undefined)) && <p>email: {email.message}</p> }
+                onBlur={handleId} state={id.check} bool={bool}/>
+            <PassInput onBlur={handlePassword} state={password.check} bool={bool}/>
+            <EmailInput handleChange={handleEmail} state={email.check} bool={bool}/>
+            {((bool && id.message.length > 1) || (!id.check&& id.check !==undefined)) 
+                && <p className='text-red-600'>id: {id.message}</p> }
+            {((bool && password.message.length > 1) || (!password.check && password.check !==undefined)) 
+                && <p className='text-red-600'>password: {password.message}</p> }
+            {((bool && email.message.length > 1) || (!email.check && email.check !==undefined)) 
+                && <p className='text-red-600'>email: {email.message}</p> }
         </div>
     )
 }
