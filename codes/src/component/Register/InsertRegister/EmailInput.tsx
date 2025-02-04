@@ -18,11 +18,16 @@ export default function EmailInput({handleChange,state,bool}:EType){
   const dispatch = useDispatch();
   const update = (Fst:string,Lst:string) => {
     const email = `${Fst}@${Lst}`
-    if(Fst !=='' && Lst !== ''){
+    console.log(Fst.match(/^[a-z0-9]{1,23}$/))
+    console.log(Lst.match(/^[a-z]+(?:\.[a-z]+)?$/))
+    if(Fst.match(/^[a-z0-9]{1,23}$/) && Lst.match(/^[a-z]+(?:\.[a-z]+)?$/)){
       handleChange('',true)
       dispatch(userAction.setInputs({name:'email',value:email}))
-    }else{
+    }
+    else if(Fst =='' && Lst == ''){
       handleChange('필수정보입니다.',false)
+    }else{
+      handleChange('정확하게 입력해주세요.',false)
     }
 
   }

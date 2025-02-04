@@ -29,6 +29,7 @@ export default function SecondBox({check,bool}:ST){
     });
     const [sex,setSex] = useState('males');
     const [foreigner, setForeigner] = useState('inner');
+
     const [allAgree,setAllAgree] = useState({message:'',check:false});
     const [isOpen,setIsOpen] = useState(false);
     const [info,setInfo] = useState(false);
@@ -117,6 +118,7 @@ export default function SecondBox({check,bool}:ST){
             <FInput Src={Person} Alt='이름' name='name' onBlur={handleName} state={name.check} bool={bool}/>
             <FInput Src={Birth} Alt='생년월일8자리' name='birth' onBlur={handleBirth} state={birth.check} bool={bool}/>
             <WireInput handler={handleWireState} state={wireInfo.check} bool={bool}/>
+            
             <div className='h-[4rem] flex p-2 justify-around border-b-2 border-x-2'>
                 <ChooseBtn List={['남자','여자']} State={sex} One={selectM} Two={selectF}></ChooseBtn>
                 <ChooseBtn List={['내국인','외국인']} State={foreigner} One={selectI} Two={selectO}></ChooseBtn>
