@@ -7,7 +7,7 @@ export default function LoginFinal(){
             <div className="logo-container">
               <img
                 //src=
-                alt="Baobab Logo"
+                alt="Baobab"
                 className="logo"
               />
             </div>
