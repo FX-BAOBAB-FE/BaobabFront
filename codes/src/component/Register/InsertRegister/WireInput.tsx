@@ -5,11 +5,14 @@ import arrow_down from './Img/arrow_down.png'
 import arrow_up from './Img/arrow_up.png'
 import { useDispatch } from "react-redux";
 import { userAction } from "../../reduxData/user-Slice";
+import InsertColorChange from "./ChangeContext/InsertColorChange";
 
 type WType = {
-    handler:(val:string,bool:boolean)=> void
+    handler:(val:string,bool:boolean)=> void,
+    state:boolean|undefined,
+    bool:boolean
 }
-export default function WireInput({handler}:WType){
+export default function WireInput({handler,state,bool}:WType){
     const dispatch = useDispatch();
 
     const [isExpanded, setIsExpanded] = useState(false);
@@ -28,7 +31,7 @@ export default function WireInput({handler}:WType){
       setIsExpanded((prev) => !prev);
     };
     return(
-        <div className={`h-[4rem] w-full flex items-center border-b-2 border-x-2`}>
+        <InsertColorChange state={state} bool={bool}>
             <img src={connection} alt="통신사 선택" className='w-6 h-6 mx-3'/>
             <div className="flex">
                 <button aria-expanded={isExpanded} aria-controls="drop" onClick={toggleMenu}
@@ -47,6 +50,6 @@ export default function WireInput({handler}:WType){
                 </div>
                 <button onClick={toggleMenu}><img src={isExpanded ? arrow_up : arrow_down} className="ml-2 w-5 h-5"/></button>
             </div>
-        </div>
+        </InsertColorChange>
     )
 }

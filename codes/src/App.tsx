@@ -14,11 +14,11 @@ import { PersistGate } from 'redux-persist/integration/react';
 import AgreeFinal from './page/RegisterPage/AgreeFinal';
 import LoginFinal from './page/LoginPage/LoginFinal';
 import RegisterFinal from './page/RegisterPage/RegisterFinal';
+import SuccessFinal from './page/RegisterPage/SuccessPage/SuccessFinal';
 const router = createBrowserRouter([
   {
     path:'/',
     element:<Header/>,
-    
     children:[
       {index:true, element:<FinalMainPage/>},
       {path:'/UsedGoodsDeal', element:<Final/>,},
@@ -28,6 +28,7 @@ const router = createBrowserRouter([
       {path:'Agree' , element:<AgreeFinal/>},
       {path:'Agree/Register', element:<RegisterFinal/>},
       {path:'Login', element:<LoginFinal/>},
+      {path:'Agree/Register/Success', element:<SuccessFinal/>},
     ]
   }]);
 

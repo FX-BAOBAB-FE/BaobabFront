@@ -11,6 +11,7 @@ react
 TypeScript
 react-router
 Redux
+react-daum-postcode
 
 CSS package
 현재 tailwind와 Styled-Component가 같이 사용되었는데,
