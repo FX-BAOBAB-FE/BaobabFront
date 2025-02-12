@@ -8,7 +8,6 @@ type IType ={
     Alt:string,
     name:string,
     Type?:string,
-    design?:string[],
     state:boolean|undefined,
     bool:boolean,
     onBlur:(e:React.FocusEvent<HTMLInputElement>) => void,

@@ -21,9 +21,8 @@ export default function FirstBox({check,bool}:Ft){
         message: '필수 정보입니다',
     });
     const dispatch = useDispatch();
-    const handleId = (e:React.FocusEvent<HTMLInputElement>) => {
+    const handleNickName = (e:React.FocusEvent<HTMLInputElement>) => {
         const value = e.target.value
-
         if(value === ''){
             setNickName({message:'필수 정보입니다',check:false})
         }else if(!value.match(/^[a-z0-9_-]{5,20}$/)){
@@ -31,7 +30,7 @@ export default function FirstBox({check,bool}:Ft){
         }else{
             setNickName({message:'',check:true})
         }
-        dispatch(userAction.setInputs({name:'id',value:value}))
+        dispatch(userAction.setInputs({name:'nickName',value:value}))
     }
     const handlePassword = (e:React.FocusEvent<HTMLInputElement>) => {
         const value = e.target.value
@@ -54,11 +53,11 @@ export default function FirstBox({check,bool}:Ft){
         }
     },[nickName.check,password.check,email.check])
     return(
-        <div className="w-[35rem] h-[16.5rem] rounded-md mb-3 flex flex-col mt-14">
+        <div className="w-[35rem] h-[18rem] rounded-md mb-3 flex flex-col mt-14">
             <EmailInput handleChange={handleEmail} state={email.check} bool={bool}/>
             <PassInput onBlur={handlePassword} state={password.check} bool={bool}/>
             <FInput Src={person} name="id" Alt='닉네임' 
-                onBlur={handleId} state={nickName.check} bool={bool}/>
+                onBlur={handleNickName} state={nickName.check} bool={bool}/>
 
             {((bool && email.message.length > 1) || (!email.check && email.check !==undefined)) 
                 && <p className='text-red-600'>email: {email.message}</p> }

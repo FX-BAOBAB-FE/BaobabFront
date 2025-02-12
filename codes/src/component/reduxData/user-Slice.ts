@@ -1,16 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {UserType, UserTypeMessage } from "../Types/UserInfo";
+import {UserType } from "../Types/UserInfo";
 
 const userInit:UserType= {
-    id:'',
-    password:'',
     email:'',
+    password:'',
+    nickName:'',
     name:'',
+    carrierType:'',
+    phoneNumber:'',
+    genderType:'MALE',
+    isForeigner:true,
     birth:'',
-    wire:'',
-    sex:'',
-    foreigner:'',
-    phone:'',
+    address:'',
+    detailAddress:'',
+    basicAddress:false,
+    post:'',
 }
 const userSlice= createSlice({
     name:'user',

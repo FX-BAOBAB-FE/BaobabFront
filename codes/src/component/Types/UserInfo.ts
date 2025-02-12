@@ -1,25 +1,17 @@
 export type UserType ={
-    id:string,
-    password:string,
     email:string,
+    password:string,
+    nickName:string,
     name:string,
+    carrierType:string,
+    phoneNumber:string,
+    genderType:string,
+    isForeigner:boolean,
     birth:string,
-    wire:string,
-    sex:string,
-    foreigner:string,
-    phone:string,
-}
-
-export type UserTypeMessage ={
-    idM:string,
-    passwordM:string,
-    emailM:string,
-    nameM:string,
-    birthM:string,
-    wireM:string,
-    sexM:string,
-    foreignerM:string,
-    phoneM:string,
+    address:string,
+    detailAddress:string,
+    basicAddress:boolean,
+    post:string,
 }
 
 export type UserProps = {

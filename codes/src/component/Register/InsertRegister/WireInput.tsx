@@ -18,13 +18,14 @@ export default function WireInput({handler,state,bool}:WType){
     const [isExpanded, setIsExpanded] = useState(false);
     const [selected, setSelected] = useState("통신사 선택");
 
-    function onClick(e:React.MouseEvent<HTMLDivElement>){
-        const a = e.target as HTMLLIElement
-        if(a.tagName=='BUTTON'){
+    function onClick(e: React.MouseEvent<HTMLDivElement>) {
+        const target = e.target as HTMLButtonElement;
+        if (target.tagName === "BUTTON") {
+            const value = target.value;  // 버튼의 value 가져오기
             handler('',true)
-            setSelected(a.innerText);
+            setSelected(target.innerText);
             setIsExpanded(false);
-            dispatch(userAction.setInputs({name:'wire',value:a.innerText}))
+            dispatch(userAction.setInputs({name:'carrierType',value:value}))
         }
     }
     const toggleMenu = () => {
@@ -41,12 +42,18 @@ export default function WireInput({handler,state,bool}:WType){
                 </button>
                 <div id="drop" hidden={!isExpanded} onClick={onClick} className="absolute z-10 grid grid-cols-2 
                  bg-[#F8F9FA] border-2 rounded-md shadow-md mt-5 cursor-pointer">
-                    <button className="text-left pl-2 py-2 border-b-[1px] border-r-[1px]">SKT</button>
-                    <button className="text-left px-2 py-2 border-b-[1px]">SKT알뜰폰</button>
-                    <button className="text-left pl-2 py-2 border-b-[1px] border-r-[1px]">KT</button>
-                    <button className="text-left px-2 py-2 border-b-[1px]">KT알뜰폰</button>
-                    <button className="text-left pl-2 py-2 border-b-[1px] border-r-[1px]">LG</button>
-                    <button className="text-left px-2 py-2 border-b-[1px]">LG알뜰폰</button>
+                    <button className="text-left pl-2 py-2 border-b-[1px] border-r-[1px]" 
+                        value="SKT">SKT</button>
+                    <button className="text-left px-2 py-2 border-b-[1px]" 
+                        value="SKT_MVNO">SKT알뜰폰</button>
+                    <button className="text-left pl-2 py-2 border-b-[1px] border-r-[1px]" 
+                        value="KT">KT</button>
+                    <button className="text-left px-2 py-2 border-b-[1px]" 
+                        value="KT_MVNO">KT알뜰폰</button>
+                    <button className="text-left pl-2 py-2 border-b-[1px] border-r-[1px]" 
+                        value="LGU_PLUS">LG</button>
+                    <button className="text-left px-2 py-2 border-b-[1px]" 
+                        value="LGU_PLUS_MVNO">LG알뜰폰</button>
                 </div>
                 <button onClick={toggleMenu}><img src={isExpanded ? arrow_up : arrow_down} className="ml-2 w-5 h-5"/></button>
             </div>
