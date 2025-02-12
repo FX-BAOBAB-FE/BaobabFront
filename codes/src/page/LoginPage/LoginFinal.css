@@ -72,6 +72,15 @@
     box-sizing: border-box;
   }
   
+  .password-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
   /* 구분선 */
   .divider {
     margin: 10px 0;
