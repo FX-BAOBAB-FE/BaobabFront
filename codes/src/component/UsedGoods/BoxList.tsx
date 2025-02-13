@@ -41,6 +41,7 @@ export default function BoxList(){
 
     return(
         <div className='w-full h-full flex justify-center flex-col items-center'>
+            <button className='border-2 mt-4'>게시물 등록</button>
             <div className='w-[80%] h-full grid grid-cols-[repeat(auto-fit,minmax(25rem,1fr))] gap-10 text-center'>
                 {nowData.map(
                     (dataObj)=>
