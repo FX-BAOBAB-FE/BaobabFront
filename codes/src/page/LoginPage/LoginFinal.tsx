@@ -6,6 +6,7 @@ export default function LoginFinal(){
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isEmailValid, setIsEmailValid] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] =useState(false);
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -19,20 +20,18 @@ export default function LoginFinal(){
       setError('');
       setIsEmailValid(true);
     } else {
-      setError("이메일을 정확하게 입력해 주세요");
       setIsEmailValid(false);
     }
   }
 
   const handleSubmit = () => {
-    if(!validateEmail(email)) {
+    if(!isEmailValid) {
       setError("이메일을 정확하게 입력해 주세요")
       return;
     }
 
     setError("");
-    console.log("Email:", email);
-    console.log("Password:", password);
+    setIsPasswordVisible(true);
   }
 
     return(
@@ -61,7 +60,7 @@ export default function LoginFinal(){
               onChange={handleEmailChange}
             />
             {error && <p className="error-message">{error}</p>}
-            {isEmailValid && (
+            {isPasswordVisible && (
               <input
                 type="password"
                 placeholder="비밀번호"
@@ -75,7 +74,7 @@ export default function LoginFinal(){
               className="login-button continue-button"
               onClick={handleSubmit}
             >
-              {isEmailValid ? "로그인" : "계속"}
+              {isPasswordVisible ? "로그인" : "계속"}
             </button>
             
             <footer className="footer">
