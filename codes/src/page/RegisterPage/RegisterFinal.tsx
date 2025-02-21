@@ -36,6 +36,7 @@ export default function RegisterFinal(){
     const handleSubmit = async() => {
         if(inputRef.current?.value.match(/^[0-9]{6}$/)){
             setError(false);
+            console.log(selector);
             await registerPost(selector);
             navigate('Success');
         }else{
