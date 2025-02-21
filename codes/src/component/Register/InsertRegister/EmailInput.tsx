@@ -18,9 +18,9 @@ export default function EmailInput({handleChange,state,bool}:EType){
   const dispatch = useDispatch();
   const update = (Fst:string,Lst:string) => {
     const email = `${Fst}@${Lst}`
-    console.log(Fst.match(/^[a-z0-9]{1,23}$/))
+    console.log(Fst.match(/^[a-z0-9]{1,50}$/))
     console.log(Lst.match(/^[a-z]+(?:\.[a-z]+)?$/))
-    if(Fst.match(/^[a-z0-9]{1,23}$/) && Lst.match(/^[a-z]+(?:\.[a-z]+)?$/)){
+    if(Fst.match(/^[a-z0-9]{1,50}$/) && Lst.match(/^[a-z]{1,25}\.[a-z]{1,25}$/)){
       handleChange('',true)
       dispatch(userAction.setInputs({name:'email',value:email}))
     }

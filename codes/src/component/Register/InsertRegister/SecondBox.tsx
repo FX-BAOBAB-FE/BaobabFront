@@ -48,7 +48,9 @@ export default function SecondBox({check,bool}:ST){
     const handleName = (e:React.FocusEvent<HTMLInputElement>) => {
         const value = e.target.value
         if(value === ''){setName({message:'필수 정보입니다',check:false})}
-        else{
+        else if(value.length <2 || value.length > 50 ){
+            setName({message:'2자 이상 50자 이하이며 특수문자는 제외됩니다.',check:false})
+        }else{
             setName({message:'',check:true})
             dispatch(userAction.setInputs({name:'name',value:value}))
         }
@@ -82,6 +84,9 @@ export default function SecondBox({check,bool}:ST){
     const handlePost = (e:React.FocusEvent<HTMLInputElement>) => {
         const value = e.target.value
         if(value === ''){setAddress({message:'필수 정보입니다',check:false})}
+        else if(value.length !== 5){
+            setAddress({message:'우편번호는 5자리 숫자여야 합니다.',check:false})
+        }
         else{
             setAddress({message:'',check:true})
             dispatch(userAction.setInputs({name:'post',value:value}))
@@ -91,6 +96,9 @@ export default function SecondBox({check,bool}:ST){
     const handleAddress = (e:React.FocusEvent<HTMLInputElement>) => {
         const value = e.target.value
         if(value === ''){setAddress({message:'필수 정보입니다',check:false})}
+        else if(value.length <1 || value.length > 200){
+            setAddress({message:'최대 200자까지 입력 가능합니다',check:false})
+        }
         else{
             setAddress({message:'',check:true})
             dispatch(userAction.setInputs({name:'address',value:value}))
@@ -99,12 +107,14 @@ export default function SecondBox({check,bool}:ST){
     const handleDetailAddress = (e:React.FocusEvent<HTMLInputElement>) => {
         const value = e.target.value
         if(value === ''){setAddress({message:'필수 정보입니다',check:false})}
+        else if(value.length <1 || value.length > 200){
+            setAddress({message:'최대 200자까지 입력 가능합니다',check:false})
+        }
         else{setAddress({message:'',check:true})}
         dispatch(userAction.setInputs({name:'detailAddress',value:value}))
     }
     const handleWireState = (val:string,bool:boolean) => {
         setWireInfo({message:val,check:bool})
-        console.log(wireInfo.check)
     }
     const selectM=() =>{ 
         setSex('males') 

@@ -25,8 +25,8 @@ export default function FirstBox({check,bool}:Ft){
         const value = e.target.value
         if(value === ''){
             setNickName({message:'필수 정보입니다',check:false})
-        }else if(!value.match(/^[a-z0-9_-]{5,20}$/)){
-            setNickName({message:'5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.',check:false})
+        }else if(!value.match(/^[a-zA-Z0-9가-힣~!@#]{2,50}$/)){
+            setNickName({message:'2자 이상 50자 이하이며 특수문자는 ~!@#만 가능합니다',check:false})
         }else{
             setNickName({message:'',check:true})
         }
@@ -36,8 +36,8 @@ export default function FirstBox({check,bool}:Ft){
         const value = e.target.value
         if(value === ''){
             setPassword({message:'필수 정보입니다', check:false})
-        }else if(!value.match(/^[a-zA-Z0-9~!@#$%^&*()_+]{8,16}/g)){
-            setPassword({message:'8~16자의 영문 대/소문자, 숫자, 특수기호를 사용 가능합니다.',check:false})
+        }else if(!value.match(/^[a-zA-Z0-9~!@#$%^&*()_+]{8,100}/g)){
+            setPassword({message:'8~100자의 영문 대/소문자, 숫자, 특수기호를 사용 가능합니다.',check:false})
         }else{
             setPassword({message:'',check:true})
         }
