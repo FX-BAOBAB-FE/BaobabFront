@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate} from "react-router-dom";
 import { userAction } from "../../component/reduxData/user-Slice";
 import lock from '../../component/Register/InsertRegister/Img/lock.png'
+import { registerPost } from "../../component/fetch/user";
 
 export default function RegisterFinal(){
     const location = useLocation();
@@ -32,9 +33,10 @@ export default function RegisterFinal(){
             setSuccess(true);
         }
     }
-    const handleSubmit = () => {
+    const handleSubmit = async() => {
         if(inputRef.current?.value.match(/^[0-9]{6}$/)){
-            setError(false)
+            setError(false);
+            await registerPost(selector);
             navigate('Success');
         }else{
             setError(true)
@@ -45,7 +47,11 @@ export default function RegisterFinal(){
     },[location,dispatch])
     return(
         <div className="flex flex-col h-[60rem] items-center">
-            <form onSubmit={(e) => {e.preventDefault();}}>
+            <form 
+            onSubmit={(e) => {
+                e.preventDefault();
+            }}
+            >
                 <FirstBox check={handleFisrtChange} bool={success}/>
                 <SecondBox check={handleSecondChange} bool={success}/>
                 {next && 
@@ -58,12 +64,23 @@ export default function RegisterFinal(){
                 </div>
                 }
                 {error && <p className="text-red-600">인증이 필요합니다.</p>}
-                <button className='w-[35rem] h-12 bg-[var(--logo-color)] rounded-lg
-                font-bold text-white mt-5'
-                onClick={next ? handleSubmit : handleClick}
-                >
-                    {next ? '가입하기' : '인증 요청'}
-                </button>
+                {!next && 
+                    <button className='w-[35rem] h-12 bg-[var(--logo-color)] rounded-lg
+                    font-bold text-white mt-5'
+                    onClick={handleClick}
+                    >
+                        인증 요청
+                    </button>
+                }
+                {next && 
+                    <button className='w-[35rem] h-12 bg-[var(--logo-color)] rounded-lg
+                    font-bold text-white mt-5'
+                    onClick={handleSubmit}
+                    type="submit"
+                    >
+                        가입하기
+                    </button>
+                }
             </form>
         </div>
     )
