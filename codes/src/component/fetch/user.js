@@ -6,7 +6,7 @@ export const registerPost = async (data) => {
         console.error("🚨 회원가입 요청 데이터가 없습니다!", data);
         return;
     }
-    
+    console.log(data)
     try {
         console.log("📤 보내는 데이터:", data);
         const response = await Instance.post("/user-service/open-api/register", data);
