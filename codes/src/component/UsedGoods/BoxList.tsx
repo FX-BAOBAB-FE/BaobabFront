@@ -6,6 +6,7 @@ import BoxData from './BoxData'
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { boxAction } from '../reduxData/box-Slice';
+import { InsertPoster } from '../fetch/article';
 export default function BoxList(){
     //data부분은 나중에 서버와 연결하여 axios로 대체할거임
     let qwe:number = 0;
@@ -22,6 +23,7 @@ export default function BoxList(){
     const [nowData,setNowData] = useState(data.slice(0,6));
     const num = useRef(0);
     const [btnCheck,setBtnCheck] = useState(false);
+    const [img,setImg] = useState<File[]>();
 
     function handlerMoreBtn(){
         if(data.length - nowData.length >=9){
@@ -39,8 +41,28 @@ export default function BoxList(){
         }
     }
 
+    const handleFileChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+        if(e.target.files){
+            setImg(Array.from(e.target.files)); // 여러 개 선택 가능
+        }
+      };
+    const handleSubmit = async() => {
+        await InsertPoster(img);
+    }
+
     return(
         <div className='w-full h-full flex justify-center flex-col items-center'>
+            {/* <input type="file" multiple onChange={handleFileChange} />
+            <button className='border-2 mt-4' onClick={handleSubmit}>게시물 등록</button> */}
+            <div className='w-[80%] h-[5rem] border-2 flex items-center m-5'>
+                
+            </div>
+            <Link to={'/Regist'} className='
+            flex justify-center items-center w-[9rem] h-[4rem] bg-[var(--logo-color)] text-xl
+            rounded-md text-white hover:bg-[#5F7FF5] active:bg-[#3D6EE3]'
+            >
+                등록하기
+            </Link>
             <div className='w-[80%] h-full grid grid-cols-[repeat(auto-fit,minmax(25rem,1fr))] gap-10 text-center'>
                 {nowData.map(
                     (dataObj)=>

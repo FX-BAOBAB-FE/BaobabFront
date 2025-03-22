@@ -11,6 +11,8 @@ react
 TypeScript
 react-router
 Redux
+react-daum-postcode
+http-proxy-middleware
 
 CSS package
 현재 tailwind와 Styled-Component가 같이 사용되었는데,
@@ -22,3 +24,5 @@ UsedGoodsDeal와 세부사항 80% 완료.
 해결해야 할 사항
 1. 새로고침할 경우 데이터가 날라가는 현상 잡기
 2. 이미지가 여러개 일 경우 스크롤 기능 활성화
+
+AccessToken
