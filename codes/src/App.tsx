@@ -15,6 +15,7 @@ import AgreeFinal from './page/RegisterPage/AgreeFinal';
 import LoginFinal from './page/LoginPage/LoginFinal';
 import RegisterFinal from './page/RegisterPage/RegisterFinal';
 import SuccessFinal from './page/RegisterPage/SuccessPage/SuccessFinal';
+import RegistFinal from './page/UsedGoods/GoodsRegist/RegistFinal';
 const router = createBrowserRouter([
   {
     path:'/',
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
       {path:'Agree/Register', element:<RegisterFinal/>},
       {path:'Login', element:<LoginFinal/>},
       {path:'Agree/Register/Success', element:<SuccessFinal/>},
+      {path:'regist', element:<RegistFinal/>}
     ]
   }]);
 

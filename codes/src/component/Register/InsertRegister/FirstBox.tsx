@@ -36,8 +36,10 @@ export default function FirstBox({check,bool}:Ft){
         const value = e.target.value
         if(value === ''){
             setPassword({message:'필수 정보입니다', check:false})
-        }else if(!value.match(/^[a-zA-Z0-9~!@#$%^&*()_+]{8,100}/g)){
-            setPassword({message:'8~100자의 영문 대/소문자, 숫자, 특수기호를 사용 가능합니다.',check:false})
+        }else if(value.length < 8 || value.length >101){
+            setPassword({message:'8자 이상이어야 합니다',check:false})
+        }else if(!value.match(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).+$/)){
+            setPassword({message:'영문 대/소문자, 숫자를 하나 이상 포함해야 합니다.',check:false})
         }else{
             setPassword({message:'',check:true})
         }
