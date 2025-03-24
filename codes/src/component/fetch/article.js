@@ -13,11 +13,7 @@ export const InsertPoster = async (img) => {
         for (let pair of formData.entries()) {
             console.log(`📤 ${pair[0]}:`, pair[1]);
         }
-        const response = await FormDataInstance.post("/article-service/api/save",formData,{
-            headers:{
-                Authorization:`Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2N2FjOTFiYjRmMjgwOTMwNjdhYzdiYWQiLCJleHAiOjE3Mzk0NDEwNzR9.iNRhyUXwI3BEy-DQ62_s23Q3T-r8gfEyz2JMFQYcngM`
-            }
-        })
+        const response = await FormDataInstance.post("/article-service/api/save",formData)
         console.log("✅ 응답 데이터:", response);
     } catch (error) {
         console.error("🚨 등록 실패:", error);
