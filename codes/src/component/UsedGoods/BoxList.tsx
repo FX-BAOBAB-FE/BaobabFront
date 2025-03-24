@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { boxAction } from '../reduxData/box-Slice';
 import Category from './Category';
 import RegisterBtn from './RegisterBtn';
+import { AllLoad } from '../fetch/articleLoad';
 export default function BoxList(){
     //data부분은 나중에 서버와 연결하여 axios로 대체할거임
     let qwe:number = 0;

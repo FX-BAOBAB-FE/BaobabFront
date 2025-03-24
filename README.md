@@ -3,3 +3,4 @@ react-router-dom
 redux
 bootstrap
 vercel
+framer motion
