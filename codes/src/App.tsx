@@ -16,14 +16,16 @@ import LoginFinal from './page/LoginPage/LoginFinal';
 import RegisterFinal from './page/RegisterPage/RegisterFinal';
 import SuccessFinal from './page/RegisterPage/SuccessPage/SuccessFinal';
 import RegistFinal from './page/UsedGoods/GoodsRegist/RegistFinal';
+import { Loader as GoodsLoader } from './component/UsedGoods/BoxList';
+import { Loader as SlidLoader } from './component/UsedGoods/DetailsPage/ImgSilder/SildImg';
 const router = createBrowserRouter([
   {
     path:'/',
     element:<Header/>,
     children:[
       {index:true, element:<FinalMainPage/>},
-      {path:'/UsedGoodsDeal', element:<Final/>,},
-      {path:'/UsedGoodsDeal/:urlId', element:<DetailsBoxPage/>, },
+      {path:'/UsedGoodsDeal', element:<Final/>, loader:GoodsLoader},
+      {path:'/UsedGoodsDeal/:urlId', element:<DetailsBoxPage/>, loader:SlidLoader},
       {path:'PlanPage', element:<FinalPlan/>},
       {path:'Calculate', element:<FinalPlan/>},
       {path:'Agree' , element:<AgreeFinal/>},
