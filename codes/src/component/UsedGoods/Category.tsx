@@ -29,7 +29,7 @@ export default function Category(){
                     <img src={Larrow} className='w-[3rem] h-[3rem]'/>
                 </button>
                 <button 
-                    className='absolute z-30 opacity-60 right-0 w-[3rem] h-[11rem] hover:opacity-100'
+                    className='absolute z-30 opacity-60 right-0 w-[3rem] h-[11rem] hover:opacity-100 transition-opacity duration-300'
                     onClick={rightArrow}>
                     <img src={Rarrow} className='w-[3rem] h-[3rem]'/>
                 </button>
@@ -37,6 +37,7 @@ export default function Category(){
                     className='flex overflow-x-scroll z-10' 
                     style={{scrollbarWidth:'none', msOverflowStyle:'none'}}
                     ref={boxRef}>
+                        {/* 클릭시 테두리 어떻게 디자인할지 생각 */}
                     {ENUMLIST.map((idx,i) =>(
                         <motion.button 
                             key={i}
@@ -49,6 +50,7 @@ export default function Category(){
                             <p className='mt-3'>{idx.value}</p>
                         </motion.button>
                     ))}
+                    {/* 카테고리 클릭시 해당 위치에 X버튼을 눌러 카테고리를 제거할 수 있는 부분 만들 예정 */}
                 </div>
         </div>
     )
