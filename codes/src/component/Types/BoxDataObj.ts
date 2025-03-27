@@ -11,7 +11,7 @@ interface BoxDataObj{
     price:number,
     imageList:ImgList[],
     profileImageUrl:string,
-    registeredAt:Date,
+    registeredAt:string,
     status:string,
     nickname:string,
 }
