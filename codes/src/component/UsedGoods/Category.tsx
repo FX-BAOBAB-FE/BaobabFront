@@ -1,8 +1,15 @@
 import { ENUMLIST } from './ENUMLIST';
 import Rarrow from './image/Rarrow.png'
 import Larrow from './image/Larrow.png'
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {motion} from 'motion/react'
+
+interface wihe{
+    weight:string,
+    height:string
+}
+
+
 export default function Category(){
     const boxRef = useRef<HTMLDivElement>(null);
     const [selected, setSelected] = useState<string[]>([]);
@@ -19,17 +26,19 @@ export default function Category(){
             setSelected(prev => [...prev,val])
         }
     }
-    console.log(selected)
+    useEffect(()=>{
+        
+    },[selected])
     return(
         <div className='w-[80%] h-[11rem] border-[3px]
-            flex relative items-center m-5 z-0'>
+            flex relative items-center my-5 z-0'>
                 <button 
                     className='absolute z-30 opacity-30 w-[3rem] h-[11rem] hover:opacity-100 transition-opacity duration-300'
                     onClick={leftArrow}>
                     <img src={Larrow} className='w-[3rem] h-[3rem]'/>
                 </button>
                 <button 
-                    className='absolute z-30 opacity-60 right-0 w-[3rem] h-[11rem] hover:opacity-100 transition-opacity duration-300'
+                    className='absolute z-30 opacity-30 right-0 w-[3rem] h-[11rem] hover:opacity-100 transition-opacity duration-300'
                     onClick={rightArrow}>
                     <img src={Rarrow} className='w-[3rem] h-[3rem]'/>
                 </button>
@@ -37,7 +46,6 @@ export default function Category(){
                     className='flex overflow-x-scroll z-10' 
                     style={{scrollbarWidth:'none', msOverflowStyle:'none'}}
                     ref={boxRef}>
-                        {/* 클릭시 테두리 어떻게 디자인할지 생각 */}
                     {ENUMLIST.map((idx,i) =>(
                         <motion.button 
                             key={i}

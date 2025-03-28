@@ -1,7 +1,7 @@
 import React from 'react'
 import googleplay from '../../Img/googleplay.png'
 import appstore from '../../Img/appstore.png'
-import Btn from './MainBtn'
+import Btn from '../MainPage/MainBtn'
 import box from '../../Img/MainImg.png'
 
 export default function IntroImg(){

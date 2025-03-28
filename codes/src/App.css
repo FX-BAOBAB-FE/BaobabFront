@@ -21,7 +21,7 @@
 body{
   background-color: var(--bg-color);
 }
-input{
+input,textarea{
   background-color: var(--bg-color);
 }
 select{
