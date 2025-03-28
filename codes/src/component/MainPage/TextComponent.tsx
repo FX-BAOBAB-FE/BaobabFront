@@ -1,4 +1,4 @@
-import Btn from './MainBtn';
+import Btn from '../UsedGoods/MainBtn';
 import googleplay from '../../Img/googleplay.png'
 import appstore from '../../Img/appstore.png'
 
