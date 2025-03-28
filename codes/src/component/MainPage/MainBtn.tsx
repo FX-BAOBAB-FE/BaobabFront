@@ -3,6 +3,7 @@ import { BtnType } from '../Types/BtnType';
 import {motion} from 'motion/react'
 
 export default function Btn({Src,children}:BtnType){
+    console.log('test');
     return(
         <motion.button
             initial={{}}
