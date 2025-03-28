@@ -21,7 +21,7 @@
 body{
   background-color: var(--bg-color);
 }
-input{
+input,textarea{
   background-color: var(--bg-color);
 }
 select{
@@ -31,6 +31,8 @@ select{
 :root {
   --bg-color: #F8F9FA;
   --logo-color:#4D6EF4;
+  --logo-dark: rgb(32, 65, 186);
+  --category:#0796E3;
 }
 
 
