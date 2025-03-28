@@ -79,7 +79,25 @@ export default function SildImg(){
 }
 
 export const Loader = async({params}:LoaderFunctionArgs)=>{
-    const {urlId} = params
-    const data =  await AllLoad()
-    return data.find((d:BoxDataObj) => urlId === d.id) ?? null;
+    // const {urlId} = params
+    // const data =  await AllLoad()
+    // return data.find((d:BoxDataObj) => urlId === d.id) ?? null;
+    const data:BoxDataObj = {
+        "id": "67c701896ea977024a7d60ba",
+        "title": "iPhone 15 pro ",
+        "content": "아이폰 팔아여",
+        "category": "DIGITAL_DEVICES",
+        "price": 1500000,
+        "registeredAt": "2025-03-04T13:35:05.196",
+        "status": "ON_SALE",
+        "imageList": [
+            {
+                "imageId": "nx3X2lzjMmsFumg0iaPoizhHT+eOvNn0EOuASvKgHCOKpuvFvQZP2W7KOpiww1P/LKyL3N4baXeXhU0ksWSUUg==",
+                "imageUrl": "https://baobab.run/article-service/open-api/images/53edc0be-e824-4b38-8c10-7556e6b4f557.png"
+            }
+        ],
+        "nickname": "exampl",
+        "profileImageUrl": "https://baobab.run/user-service/open-api/images/5ff8b365-aa0c-42a6-a7cf-ea1901b65232.png"
+    }
+    return data;
 }
