@@ -33,6 +33,7 @@ select{
   --logo-color:#4D6EF4;
   --logo-dark: rgb(32, 65, 186);
   --category:#0796E3;
+  --category-bg:#D96888
 }
 
 
@@ -50,3 +51,6 @@ select{
     background: transparent; /* 스크롤바 배경 투명화 */
     border: none; /* 트랙 테두리 제거 */
   }
+input[type="file"] {
+  display: none;
+}

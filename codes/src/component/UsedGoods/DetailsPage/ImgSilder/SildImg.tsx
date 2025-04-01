@@ -21,7 +21,6 @@ export default function SildImg(){
         if (ImgRef.current && currentIndex > 0) {
             const newIndex = currentIndex - 1;
             setCurrentIndex(newIndex);
-            ImgRef.current.style.transform = `translateX(${-ImgRef.current.offsetWidth * newIndex}px)`;
         }
     }
 
@@ -29,7 +28,6 @@ export default function SildImg(){
         if (ImgRef.current && currentIndex < storedData.length - 1) {
             const newIndex = currentIndex + 1;
             setCurrentIndex(newIndex);
-            ImgRef.current.style.transform = `translateX(${-ImgRef.current.offsetWidth * newIndex}px)`;
         }
     }
 
@@ -55,10 +53,16 @@ export default function SildImg(){
                 <button disabled={currentIndex <= 0} onClick={handlerLeftBtn}>
                     <img src={Left} alt='Left cursor' />
                 </button>
-                <div className='w-[65%] h-[40rem] mt-10 flex overflow-hidden rounded-xl'>
-                    <div ref={ImgRef} className="relative flex">
-                        {storedData.map((data:any,index:number) => <img key={index} className='w-full h-full ' 
-                        src={data.imageUrl} alt="not found box" />)}
+                <div className='w-[55%] h-[40rem] mt-10 flex overflow-hidden rounded-xl'>
+                    <div 
+                    ref={ImgRef} 
+                    className="flex transition-transform duration-300 ease-in-out"
+                    style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                    >
+                        {storedData.map((data:any,index:number) => 
+                            <img key={index} className='min-w-full h-[40rem] object-contain' 
+                            src={data.imageUrl} alt="not found box" />)
+                        }
                     </div>
                 </div>
                 <button disabled={currentIndex >= storedData.length - 1} onClick={handlerRightBtn}>
@@ -79,25 +83,8 @@ export default function SildImg(){
 }
 
 export const Loader = async({params}:LoaderFunctionArgs)=>{
-    // const {urlId} = params
-    // const data =  await AllLoad()
-    // return data.find((d:BoxDataObj) => urlId === d.id) ?? null;
-    const data:BoxDataObj = {
-        "id": "67c701896ea977024a7d60ba",
-        "title": "iPhone 15 pro ",
-        "content": "아이폰 팔아여",
-        "category": "DIGITAL_DEVICES",
-        "price": 1500000,
-        "registeredAt": "2025-03-04T13:35:05.196",
-        "status": "ON_SALE",
-        "imageList": [
-            {
-                "imageId": "nx3X2lzjMmsFumg0iaPoizhHT+eOvNn0EOuASvKgHCOKpuvFvQZP2W7KOpiww1P/LKyL3N4baXeXhU0ksWSUUg==",
-                "imageUrl": "https://baobab.run/article-service/open-api/images/53edc0be-e824-4b38-8c10-7556e6b4f557.png"
-            }
-        ],
-        "nickname": "exampl",
-        "profileImageUrl": "https://baobab.run/user-service/open-api/images/5ff8b365-aa0c-42a6-a7cf-ea1901b65232.png"
-    }
-    return data;
+    const {urlId} = params
+    const data =  await AllLoad()
+    return data.find((d:BoxDataObj) => urlId === d.id) ?? null;
+    
 }
