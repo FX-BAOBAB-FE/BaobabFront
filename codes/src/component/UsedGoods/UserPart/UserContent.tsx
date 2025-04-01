@@ -6,7 +6,6 @@ import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import BoxDataObj from "../../Types/BoxDataObj";
 import { deletePoster } from "../../fetch/articleLoad";
 import { useState } from "react";
-import EditDeleteBtn from "./EditDeleteBtn";
 import YesOrNoModal from "../../Modal/YesOrNoModal";
 export default function UserContext(){
     const data = useLoaderData() as BoxDataObj
