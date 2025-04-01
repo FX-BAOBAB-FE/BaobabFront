@@ -2,24 +2,28 @@ import { useEffect, useRef, useState } from 'react'
 import dummy from '../../Img/dummy.png'
 import Box from './Box';
 import MoreBtn from './MoreBtn';
-import BoxData from './BoxData'
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { boxAction } from '../reduxData/box-Slice';
+import Category from './Category';
+import RegisterBtn from './RegisterBtn';
+import { AllLoad } from '../fetch/articleLoad';
+import BoxDataObj from '../Types/BoxDataObj';
 export default function BoxList(){
-    //data부분은 나중에 서버와 연결하여 axios로 대체할거임
-    let qwe:number = 0;
-    const data:BoxData[] = Array.from(
-        { length: 20 },
-        () => new BoxData(qwe+=1,[dummy,dummy,dummy])
-    );
-    const dispatch = useDispatch();
-    useEffect(()=>{
-        data.map((dat) => {
-            dispatch(boxAction.setBoxData(dat.showData()));})
-    },[data, dispatch]);
+    const data = useLoaderData() as BoxDataObj[];
+    const [nowData,setNowData] = useState<BoxDataObj[]>([]);
+    const navigate = useNavigate();
+    const move = ()=>{
+        setTimeout(()=>{
+            navigate('Regist')
+        },2000)
+    }
 
-    const [nowData,setNowData] = useState(data.slice(0,6));
+    useEffect(()=>{
+        if(data.length > 0){
+            setNowData(data.slice(0,6));
+        }
+    },[data])
+
     const num = useRef(0);
     const [btnCheck,setBtnCheck] = useState(false);
 
@@ -39,16 +43,23 @@ export default function BoxList(){
         }
     }
 
+
     return(
         <div className='w-full h-full flex justify-center flex-col items-center'>
-            <div className='w-[80%] h-full grid grid-cols-[repeat(auto-fit,minmax(25rem,1fr))] gap-10 text-center'>
-                {nowData.map(
-                    (dataObj)=>
-                        {return <Link key={dataObj.id} to={`${dataObj.id}`}><Box Src={dataObj.img[0]} /></Link>}
-                    )
-                }
+            <Category/>
+            <RegisterBtn onClick={move}/>
+            <div className='w-[80%] h-full grid grid-cols-[repeat(auto-fit,minmax(25rem,1fr))] gap-10 text-center overflow-hidden'>
+                {data.map((dataObj) => 
+                    <Link key={dataObj.id} to={`${dataObj.id}`}>
+                        <Box imgs={dataObj.imageList} title={dataObj.title} content={dataObj.content}/>
+                    </Link>)}
             </div>
-            <MoreBtn handlerMoreBtn={handlerMoreBtn} btnCheck={btnCheck}/>
+            {/* <MoreBtn handlerMoreBtn={handlerMoreBtn} btnCheck={btnCheck}/> */}
+            
         </div>
     )
+}
+
+export const Loader = async()=>{
+    return await AllLoad()
 }

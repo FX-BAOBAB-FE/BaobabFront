@@ -1,29 +1,26 @@
 import { useEffect, useRef, useState } from 'react';
 import Left from './Img/chevron-left.png';
 import Right from './Img/chevron-right.png';
-import { useParams } from 'react-router-dom';
+import { LoaderFunctionArgs, useLoaderData, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import BoxDataObj from '../../../Types/BoxDataObj';
+import BoxDataObj, { ImgList } from '../../../Types/BoxDataObj';
+import { AllLoad } from '../../../fetch/articleLoad';
 
 export default function SildImg(){
     const ImgRef = useRef<HTMLDivElement>(null);
     const [imgAdjust, setImgAdjust] = useState(0);
     const [currentIndex, setCurrentIndex] = useState(0);  // 현재 이미지를 추적하는 상태 변수
-    const {urlId} = useParams();
-    const comparId = parseInt(urlId || '0');
-    
-    const findData = useSelector((state: any) =>
-        state.box.filter((idx:BoxDataObj)=> idx.id === comparId)
-    );
-    //findData => [[data]] 형식으로 저장되기 때문에 findData[0]으로 둠.
-    const data = findData[0]
-    let storedData:string[] = data.img
-
+    const data = useLoaderData() as BoxDataObj | null
+    const [storedData, setStoredData] = useState<ImgList[]>([]);
+    useEffect(()=>{
+        if(data?.imageList?.length){
+            setStoredData(data.imageList)
+        }
+    },[data]);
     function handlerLeftBtn() {
         if (ImgRef.current && currentIndex > 0) {
             const newIndex = currentIndex - 1;
             setCurrentIndex(newIndex);
-            ImgRef.current.style.transform = `translateX(${-ImgRef.current.offsetWidth * newIndex}px)`;
         }
     }
 
@@ -31,7 +28,6 @@ export default function SildImg(){
         if (ImgRef.current && currentIndex < storedData.length - 1) {
             const newIndex = currentIndex + 1;
             setCurrentIndex(newIndex);
-            ImgRef.current.style.transform = `translateX(${-ImgRef.current.offsetWidth * newIndex}px)`;
         }
     }
 
@@ -57,10 +53,16 @@ export default function SildImg(){
                 <button disabled={currentIndex <= 0} onClick={handlerLeftBtn}>
                     <img src={Left} alt='Left cursor' />
                 </button>
-                <div className='w-[65%] h-[40rem] mt-10 flex overflow-hidden rounded-xl'>
-                    <div ref={ImgRef} className="relative flex">
-                        {storedData.map((data:any,index:number) => <img key={index} className='w-full h-full ' 
-                        src={data} alt="not found box" />)}
+                <div className='w-[55%] h-[40rem] mt-10 flex overflow-hidden rounded-xl'>
+                    <div 
+                    ref={ImgRef} 
+                    className="flex transition-transform duration-300 ease-in-out"
+                    style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                    >
+                        {storedData.map((data:any,index:number) => 
+                            <img key={index} className='min-w-full h-[40rem] object-contain' 
+                            src={data.imageUrl} alt="not found box" />)
+                        }
                     </div>
                 </div>
                 <button disabled={currentIndex >= storedData.length - 1} onClick={handlerRightBtn}>
@@ -78,4 +80,11 @@ export default function SildImg(){
             </div>
         </div>
     );
+}
+
+export const Loader = async({params}:LoaderFunctionArgs)=>{
+    const {urlId} = params
+    const data =  await AllLoad()
+    return data.find((d:BoxDataObj) => urlId === d.id) ?? null;
+    
 }

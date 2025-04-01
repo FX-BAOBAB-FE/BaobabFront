@@ -14,32 +14,27 @@ import { PersistGate } from 'redux-persist/integration/react';
 import AgreeFinal from './page/RegisterPage/AgreeFinal';
 import LoginFinal from './page/LoginPage/LoginFinal';
 import RegisterFinal from './page/RegisterPage/RegisterFinal';
-import Use from './page/RegisterPage/AllAgreeDetail/Use';
-import Identify from './page/RegisterPage/AllAgreeDetail/Identify';
-import Wire from './page/RegisterPage/AllAgreeDetail/Wire';
-import Certification from './page/RegisterPage/AllAgreeDetail/Certification';
-import Collect from './page/RegisterPage/AllAgreeDetail/Collect';
+import SuccessFinal from './page/RegisterPage/SuccessPage/SuccessFinal';
+import RegistFinal from './page/UsedGoods/GoodsRegist/RegistFinal';
+import { Loader as GoodsLoader } from './component/UsedGoods/BoxList';
+import { Loader as SlidLoader } from './component/UsedGoods/DetailsPage/ImgSilder/SildImg';
 const router = createBrowserRouter([
   {
     path:'/',
     element:<Header/>,
     children:[
       {index:true, element:<FinalMainPage/>},
-      {path:'UsedGoodsDeal', element:<Final/>,},
-      {path:'UsedGoodsDeal/:urlId', element:<DetailsBoxPage/>, },
+      {path:'/UsedGoodsDeal', element:<Final/>, loader:GoodsLoader},
+      {path:'/UsedGoodsDeal/:urlId', element:<DetailsBoxPage/>, loader:SlidLoader},
       {path:'PlanPage', element:<FinalPlan/>},
       {path:'Calculate', element:<FinalPlan/>},
       {path:'Agree' , element:<AgreeFinal/>},
       {path:'Agree/Register', element:<RegisterFinal/>},
       {path:'Login', element:<LoginFinal/>},
-    ],
-  },
-  {path:'Agree/register/use', element:<Use/>},
-  {path:'Agree/register/identify', element:<Identify/>},
-  {path:'Agree/register/wire', element:<Wire/>},
-  {path:'Agree/register/certification', element:<Certification/>},
-  {path:'Agree/register/collect',element:<Collect/>}
-]);
+      {path:'Agree/Register/Success', element:<SuccessFinal/>},
+      {path:'/UsedGoodsDeal/regist', element:<RegistFinal/>}
+    ]
+  }]);
 
   console.log("ASD");
 export let persistor = persistStore(store);

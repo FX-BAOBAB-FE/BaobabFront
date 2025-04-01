@@ -1,17 +1,19 @@
 import React from 'react'
+import { ImgList } from '../Types/BoxDataObj'
 
-interface BoxProps {
-    Src: string;
+interface Imgs{
+    imgs:ImgList[],
+    title:string,
+    content:string,
 }
-export default function Box({Src}:BoxProps){
+
+export default function Box({imgs,title,content}:Imgs){
     return(
         <div className='w-full h-[28rem] rounded-xl mt-14 text-center bg-white'>
-            <img className='w-full h-[15rem] object-fill' src={Src} alt="dummy"/>
-            <h2 className='mt-6 text-2xl font-bold'>Title</h2> 
-            <p className='text-xl py-3 '>
-                Lorem ipsum dolor sit amet, 
-                consect etur adipiscing elit, sed do eiusmod tempor incididunt ut 
-                labore et dolore magna aliqua.
+            <img className='w-full h-[15rem] object-fill' src={imgs[0].imageUrl} alt="dummy"/>
+            <h2 className='mt-6 text-2xl font-bold'>{title}</h2> 
+            <p className='text-xl py-2 px-5 '>
+                {content}
             </p>
         </div>
 )
