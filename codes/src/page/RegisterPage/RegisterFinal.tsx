@@ -86,3 +86,14 @@ export default function RegisterFinal(){
         </div>
     )
 }
+
+// const [id,setId] = useState('');
+// const [password,setPassword]= useState('');
+// const [FirstEmail,setFirstEmail]= useState('');
+// const [LastEmail,setLastEmail] = useState('');
+// const [name,setName] = useState('');
+// const [birth,setBirth]=useState('');
+// const [wire,setWire]=useState('');
+// const [sex,setSex]=useState('');
+// const [foreigner,setForeigner]=useState('');
+// const [phone,setPhone]=useState('');
