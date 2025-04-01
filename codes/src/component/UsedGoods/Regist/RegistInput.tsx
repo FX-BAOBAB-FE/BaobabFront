@@ -1,42 +1,71 @@
-import Dropdown from 'react-bootstrap/Dropdown';
+import {DragDropContext, Draggable, Droppable} from 'react-beautiful-dnd'
 import { ENUMLIST } from "../ENUMLIST";
-import { DropdownButton } from 'react-bootstrap';
-import {motion} from 'motion/react'
-import Category from '../Category';
-import { useState } from 'react';
+import { Button, DropdownButton, ToggleButton } from 'react-bootstrap';
+import {AnimatePresence, motion} from 'motion/react'
+import { Form } from 'react-bootstrap';
+import { useEffect, useRef, useState } from 'react';
+import InputData from './InputData';
+import { v4 } from 'uuid';
+import { Console } from 'console';
+import ZoomIn from './ZoomIn';
+import RegisterBtn from '../RegisterBtn';
+import CategoryChoose from './CategoryChoose';
+import ImgInput, { FileItem } from './ImgInput';
+import { useNavigate } from 'react-router-dom';
+import { InsertPoster } from '../../fetch/articleLoad';
+
 export default function RegistInput(){
-    const [title,setTitme] = useState();
-    const [content,setContent] = useState();
-    const [category,setCategory] = useState();
-    const [price, setPrice] = useState();
-    const [img,setImg] = useState();
+    const formRef = useRef<HTMLFormElement>(null);
+    const [category, setCateogry] = useState("선택");
+    const [imgList,setImgList] = useState<FileItem[]>([]);
+    const navigate = useNavigate();
+
+    const handleSubmit = async(e:React.FormEvent) =>{
+        e.preventDefault();
+        if(!formRef.current) return
+
+        const formData = new FormData(formRef.current);
+        const title = formData.get('title')?.toString().trim();
+        const content = formData.get('content')?.toString().trim();
+        const price = formData.get('price')?.toString().trim()
+        
+        if (!title || !content || !price || category === "선택" || imgList.length === 0) {
+            alert("모든 항목을 입력해주세요.");
+            return; 
+        }
+        if(!price.match(/^[0-9]+$/g)){
+            alert('가격을 제대로 입력해주세요')
+            return;
+        }
+        formData.append("title",title);
+        formData.append("content",content);
+        formData.append("category",category);
+        formData.append("price",price);
+        imgList.forEach((image) => {
+            formData.append("imageList",image.imageList);
+        })
+
+        await InsertPoster(formData);
+        navigate(-1);
+    }
     return(
-        <div className="w-[70%] flex flex-col justify-center items-start ">
-            <div className="flex flex-col items-start">
+        <div className="w-[70%] flex flex-col justify-center items-start">
+            <Form ref={formRef} onSubmit={handleSubmit} className="flex flex-col items-start">
                 <p className="text-4xl my-8">상품 등록</p>
-                <p className="font-bold text-xl">상품명</p>
-                <p className="font-light">상품 종류와 특징을 나타낼 수 있도록 입력해주세요</p>
-                <input className="w-[40rem] h-[3rem] border-2 my-3 pl-3"/>
-                <p className='text-xl font-bold'>설명</p>
-                <p className="font-light">상품 종류와 특징에 대해 자세히 입력해주세요</p>
-                <textarea rows={5} className="w-[40rem] h-[5rem] border-2 my-3 pl-3 resize-none"/>
-                <p>카테고리</p>
-                <div className='w-[40rem] h-auto grid grid-cols-4 border-2'>
-                    {ENUMLIST.map((val,i) =>
-                        (<motion.button 
-                        className='text-xl border-2 p-3'
-                        initial={{borderColor:'var(--bg-color)'}}
-                        whileHover={{borderColor:'var(--category)'}}
-                        transition={{duration:0.2, ease:'easeIn'}}
-                        >
-                            {val.value}
-                        </motion.button>)
-                    )}
-                </div>
-                <p>판매가</p>
-                <input className="w-[5rem] h-[2rem] border-2"/>
-                <p>이미지 첨부</p>
-            </div>
+                <InputData title='상품명' content='상품 종류와 특징을 나타낼 수 있도록 입력해주세요' name="title"/>
+                <Form.Group className="mb-3 flex flex-col" controlId="content">
+                    <Form.Label className='font-bold text-xl '>설명</Form.Label>
+                    <Form.Label>상품 종류와 특징에 대해 자세히 입력해주세요</Form.Label>
+                    <Form.Control as="textarea" rows={3} required name="content" className='w-[40rem] resize-none'/>
+                </Form.Group>
+
+                <CategoryChoose category={category} setCategory={setCateogry}/>
+                
+                <InputData title='가격' content="상품에 대한 가격을 입력해주세요" name="price"/>
+
+                <ImgInput formRef={formRef} imgList={imgList} setImgList={setImgList}/>
+                
+            </Form>
         </div>
     )
 }
