@@ -9,10 +9,10 @@ const root = ReactDOM.createRoot(
 );
 console.log('asd');
 root.render(
-  <React.StrictMode>
-    <GlobalStyles/>
-    <App />
-  </React.StrictMode>
+    <>
+      <GlobalStyles/>
+      <App />
+    </>
 );
 
 

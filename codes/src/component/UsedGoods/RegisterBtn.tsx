@@ -1,16 +1,14 @@
-import { Link, useNavigate } from "react-router-dom";
 import {AnimatePresence, motion} from "motion/react"
 import { useState } from "react";
 import Spinner from './image/Spinner.gif'
-export default function RegisterBtn(){
+
+interface FuncType{
+    onClick:() => void
+}
+
+export default function RegisterBtn({onClick}:FuncType){
     const [click,setClick] = useState(false);
-    const navigate = useNavigate();
-    const move = ()=>{
-        setTimeout(()=>{
-            navigate('/Regist')
-        },2000)
-    }
-    console.log(click);
+
     return(
         <motion.button
             initial={{
@@ -22,7 +20,8 @@ export default function RegisterBtn(){
             }}
             onTap={() => {
                 setClick(true)
-                move();
+                onClick();
+                setTimeout(()=>setClick(false),2000)
             }}
             onTapCancel={() => setClick(false)}
             transition={{

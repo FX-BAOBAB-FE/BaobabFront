@@ -32,7 +32,7 @@ const router = createBrowserRouter([
       {path:'Agree/Register', element:<RegisterFinal/>},
       {path:'Login', element:<LoginFinal/>},
       {path:'Agree/Register/Success', element:<SuccessFinal/>},
-      {path:'regist', element:<RegistFinal/>}
+      {path:'/UsedGoodsDeal/regist', element:<RegistFinal/>}
     ]
   }]);
 
