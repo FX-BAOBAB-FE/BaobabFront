@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, ToggleButton } from "react-bootstrap";
 import {motion , AnimatePresence} from 'motion/react'
-import { ENUMLIST } from "../ENUMLIST";
+import { ENUMLIST } from "../../MainGoodsCompoent/ENUMLIST";
 
 interface CategoryChooseType{
     category:string,

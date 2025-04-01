@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { v4 } from "uuid";
-import ZoomIn from "./ZoomIn";
-import RegisterBtn from "../RegisterBtn";
+import ZoomInModal from "../../../Modal/ZoomInModal";
+import RegisterBtn from "../../MainGoodsCompoent/RegisterBtn";
 import { useNavigate } from "react-router-dom";
 
 export interface FileItem{
@@ -88,7 +88,7 @@ export default function ImgInput({formRef,imgList,setImgList}:ImgInputRef){
                 </div>)}
             </Droppable>
         </DragDropContext>
-        <ZoomIn show={modalShow} onHide={()=>setModalShow({check:false,img:''})}/>
+        <ZoomInModal show={modalShow} onHide={()=>setModalShow({check:false,img:''})}/>
         <div className='w-full flex flex-col items-center justify-center'>
             <label htmlFor="inputFile" className='w-[5.5rem] h-[2.5rem] flex items-center justify-center border-2 mt-2 mb-4 rounded-lg border-[#9C8ADA]'>이미지 추가</label>
             <RegisterBtn onClick={onClick}/>

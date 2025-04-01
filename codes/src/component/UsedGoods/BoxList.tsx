@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import dummy from '../../Img/dummy.png'
-import Box from './Box';
+import Box from './MainGoodsCompoent/Box';
 import MoreBtn from './MoreBtn';
 import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import Category from './Category';
-import RegisterBtn from './RegisterBtn';
+import Category from './MainGoodsCompoent/Category';
+import RegisterBtn from './MainGoodsCompoent/RegisterBtn';
 import { AllLoad } from '../fetch/articleLoad';
 import BoxDataObj from '../Types/BoxDataObj';
 export default function BoxList(){

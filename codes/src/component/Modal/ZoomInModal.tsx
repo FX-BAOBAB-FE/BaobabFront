@@ -4,7 +4,7 @@ interface ZoomInProps{
     show:{check:boolean,img:string},
     onHide:() => void
 }
-export default function ZoomIn({show,onHide}:ZoomInProps){
+export default function ZoomInModal({show,onHide}:ZoomInProps){
     return(
         <Modal
         show={show.check}

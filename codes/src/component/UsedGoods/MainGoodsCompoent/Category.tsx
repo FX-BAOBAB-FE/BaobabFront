@@ -1,6 +1,6 @@
 import { ENUMLIST } from './ENUMLIST';
-import Rarrow from './image/Rarrow.png'
-import Larrow from './image/Larrow.png'
+import Rarrow from '../image/Rarrow.png'
+import Larrow from '../image/Larrow.png'
 import { useEffect, useRef, useState } from 'react';
 import {motion} from 'motion/react'
 

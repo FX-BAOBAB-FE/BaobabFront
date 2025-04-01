@@ -1,16 +1,16 @@
 import {DragDropContext, Draggable, Droppable} from 'react-beautiful-dnd'
-import { ENUMLIST } from "../ENUMLIST";
+import { ENUMLIST } from "../MainGoodsCompoent/ENUMLIST";
 import { Button, DropdownButton, ToggleButton } from 'react-bootstrap';
 import {AnimatePresence, motion} from 'motion/react'
 import { Form } from 'react-bootstrap';
 import { useEffect, useRef, useState } from 'react';
-import InputData from './InputData';
+import InputData from './RgistComponent/InputData';
 import { v4 } from 'uuid';
 import { Console } from 'console';
-import ZoomIn from './ZoomIn';
-import RegisterBtn from '../RegisterBtn';
-import CategoryChoose from './CategoryChoose';
-import ImgInput, { FileItem } from './ImgInput';
+import ZoomIn from '../../Modal/ZoomInModal';
+import RegisterBtn from '../MainGoodsCompoent/RegisterBtn';
+import CategoryChoose from './RgistComponent/CategoryChoose';
+import ImgInput, { FileItem } from './RgistComponent/ImgInput';
 import { useNavigate } from 'react-router-dom';
 import { InsertPoster } from '../../fetch/articleLoad';
 

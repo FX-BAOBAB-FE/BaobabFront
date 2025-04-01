@@ -1,6 +1,6 @@
 import {AnimatePresence, motion} from "motion/react"
 import { useState } from "react";
-import Spinner from './image/Spinner.gif'
+import Spinner from '../image/Spinner.gif'
 
 interface FuncType{
     onClick:() => void

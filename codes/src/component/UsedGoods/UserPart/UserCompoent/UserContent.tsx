@@ -1,12 +1,12 @@
 import LikeSee from "./LikeSee";
-import eye from './Img/eye.png'
-import heart from './Img/heart.png'
-import message from './Img/message-text.png'
+import eye from '../Img/eye.png'
+import heart from '../Img/heart.png'
+import message from '../Img/message-text.png'
 import { useLoaderData, useNavigate, useParams } from "react-router-dom";
-import BoxDataObj from "../../Types/BoxDataObj";
-import { deletePoster } from "../../fetch/articleLoad";
+import BoxDataObj from "../../../Types/BoxDataObj";
+import { deletePoster } from "../../../fetch/articleLoad";
 import { useState } from "react";
-import YesOrNoModal from "../../Modal/YesOrNoModal";
+import YesOrNoModal from "../../../Modal/YesOrNoModal";
 export default function UserContext(){
     const data = useLoaderData() as BoxDataObj
     const {urlId} = useParams();

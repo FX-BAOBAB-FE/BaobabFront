@@ -1,5 +1,5 @@
 import React from 'react'
-import { ImgList } from '../Types/BoxDataObj'
+import { ImgList } from '../../Types/BoxDataObj'
 
 interface Imgs{
     imgs:ImgList[],
