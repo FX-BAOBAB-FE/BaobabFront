@@ -35,7 +35,7 @@ export default function SecondBox({check,bool}:ST){
     });
     const [sex,setSex] = useState('males');
     const [foreigner, setForeigner] = useState('inner');
-
+  
     const [allAgree,setAllAgree] = useState({message:'',check:false});
     const [isOpen,setIsOpen] = useState(false);
     const [info,setInfo] = useState(false);
@@ -139,13 +139,12 @@ export default function SecondBox({check,bool}:ST){
         if(Bool){setAllAgree(({message:'',check:Bool})) }
         else{setAllAgree(({message:'필수 약관에 모두 동의해 주세요',check:Bool}))}
     }
-    
     const handleInfo = () => { setInfo(!info)}
     const handleIdentify = () => { setIdentify(!identify)}
     const handleWire = () => { setWire(!wire)}
     const handleCertification = () => { setCertification(!certification)}
     const handleCollect = () => { setCollect(!collect)}
-    
+
     useEffect(()=>{
         const check = info && identify && wire && certification && collect
         if(check){setAllAgree({message:'',check:check});}
