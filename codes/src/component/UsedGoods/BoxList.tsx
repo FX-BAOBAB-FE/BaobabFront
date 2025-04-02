@@ -6,11 +6,12 @@ import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Category from './MainGoodsCompoent/Category';
 import RegisterBtn from './MainGoodsCompoent/RegisterBtn';
-import { AllLoad } from '../fetch/articleLoad';
+import { AllLoad, categoryLoad } from '../fetch/articleLoad';
 import BoxDataObj from '../Types/BoxDataObj';
 export default function BoxList(){
     const data = useLoaderData() as BoxDataObj[];
     const [nowData,setNowData] = useState<BoxDataObj[]>([]);
+    const [selected, setSelected] = useState<string[]>([]);
     const navigate = useNavigate();
     const move = ()=>{
         setTimeout(()=>{
@@ -23,6 +24,20 @@ export default function BoxList(){
             setNowData(data.slice(0,6));
         }
     },[data])
+
+    useEffect(() =>{
+        const fetchData = async() => {
+            const params = new URLSearchParams()
+            for(const i of selected){params.append('category',i)}
+            const data = await categoryLoad(params.toString())
+            console.log(data);
+            setNowData(data);
+            
+        }
+
+        fetchData()
+    },[selected])
+
 
     const num = useRef(0);
     const [btnCheck,setBtnCheck] = useState(false);
@@ -46,10 +61,10 @@ export default function BoxList(){
 
     return(
         <div className='w-full h-full flex justify-center flex-col items-center'>
-            <Category/>
+            <Category selected={selected} setSelected={setSelected}/>
             <RegisterBtn onClick={move}/>
             <div className='w-[80%] h-full grid grid-cols-[repeat(auto-fit,minmax(25rem,1fr))] gap-10 text-center overflow-hidden'>
-                {data.map((dataObj) => 
+                {nowData.map((dataObj) => 
                     <Link key={dataObj.id} to={`${dataObj.id}`}>
                         <Box imgs={dataObj.imageList} title={dataObj.title} content={dataObj.content}/>
                     </Link>)}
