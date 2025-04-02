@@ -11,16 +11,20 @@ export interface FileItem{
 }
 
 interface ImgInputRef{
-    formRef:React.RefObject<HTMLFormElement>;
     imgList:FileItem[],
     setImgList: React.Dispatch<React.SetStateAction<FileItem[]>>;
 }
-export default function ImgInput({formRef,imgList,setImgList}:ImgInputRef){
+export default function ImgInput({imgList,setImgList}:ImgInputRef){
     const [modalShow, setModalShow] = useState({check:false, img:''});
     
     const selectImg= (img:string)=>{
         setModalShow({check:true,img:img});
     }
+
+    const handleDeleteImg = (id: string) => {
+        setImgList(prev => prev.filter(img => img.id !== id));
+      };
+
     const onChangeImg = (e:React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files
         if(!files) return
@@ -53,39 +57,51 @@ export default function ImgInput({formRef,imgList,setImgList}:ImgInputRef){
         <DragDropContext onDragEnd={onDragEnd}>
             <Droppable droppableId="img-list" direction="horizontal">
                 {(provided) => (
-                <div
-                ref={provided.innerRef}
-                {...provided.droppableProps}
-                className="flex flex-row items-center w-[40rem] h-[14rem] overflow-x-scroll border-2"
-                >
-                {imgList.map((img, index) => (
-                <Draggable key={img.id} draggableId={img.id} index={index}>
-                    {(provided) => (
                     <div
                     ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    className={`${
-                    index === 0
-                        ? "w-[14rem] h-[10rem] border-2"
-                        : "w-[5rem] h-[5rem] border-2"
-                    } mx-2 shrink-0`}
-                    onClick={() => selectImg(URL.createObjectURL(img.imageList))}
+                    {...provided.droppableProps}
+                    className="flex flex-row items-center w-[40rem] h-[14rem] overflow-x-scroll border-2"
                     >
-                        <img
-                        src={URL.createObjectURL(img.imageList)}
-                        alt="이미지"
-                        className="w-full h-full object-cover"
-                        />
-                            {index === 0 && (
-                            <p className="text-center text-sm text-blue-500 font-bold">대표</p>
-                            )}
-                    </div>                                
-                    )}
-                    </Draggable>
-                ))}
-                {provided.placeholder}
-                </div>)}
+                        {imgList.map((img, index) => (
+                            <Draggable key={img.id} draggableId={img.id} index={index}>
+                                {(provided) => (
+                                    <div
+                                    ref={provided.innerRef}
+                                    {...provided.draggableProps}
+                                    {...provided.dragHandleProps}
+                                    className={`relative ${
+                                    index === 0
+                                        ? "w-[14rem] h-[10rem] border-2"
+                                        : "w-[5rem] h-[5rem] border-2"
+                                    } mx-2 shrink-0`}
+                                    onClick={() => selectImg(URL.createObjectURL(img.imageList))}
+                                    >
+                    
+                                        <button
+                                        type="button"
+                                        onClick={(e) => {
+                                            e.stopPropagation(); // 확대 클릭 막기
+                                            handleDeleteImg(img.id);
+                                        }}
+                                        className="absolute top-1 right-1 bg-red-500 text-white w-6 h-6 rounded-full text-xs z-10"
+                                        >
+                                        ✕
+                                        </button>
+
+                                        <img
+                                        src={URL.createObjectURL(img.imageList)}
+                                        alt="이미지"
+                                        className="w-full h-full object-cover"
+                                        />
+
+                                        {index === 0 && (
+                                        <p className="text-center text-sm text-blue-500 font-bold">대표</p>
+                                        )}
+                                    </div>)}
+                                </Draggable>
+                        ))}
+                        {provided.placeholder}
+                    </div>)}
             </Droppable>
         </DragDropContext>
         <ZoomInModal show={modalShow} onHide={()=>setModalShow({check:false,img:''})}/>
