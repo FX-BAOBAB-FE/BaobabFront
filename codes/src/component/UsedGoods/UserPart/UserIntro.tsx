@@ -1,5 +1,5 @@
-import ProfileDate from "./ProfileDate";
-import UserContext from "./UserContent";
+import ProfileDate from "./UserCompoent/ProfileDate";
+import UserContext from "./UserCompoent/UserContent";
 
 export default function UserIntro(){
     return(

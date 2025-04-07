@@ -9,8 +9,13 @@ export const AllLoad = async () =>{
     }
 }
 
-export const categoryLoad = ()=>{
-    
+export const categoryLoad = async(categoryData)=>{
+    try{
+        const data = await FormDataInstance.get(`/article-service/open-api/list?${categoryData}`);
+        return data.data.body
+    }catch(e){
+        console.log(e);
+    }
 }
 
 export const InsertPoster = async(formData) =>{

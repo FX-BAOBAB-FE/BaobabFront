@@ -5,11 +5,12 @@ import Modal from 'react-bootstrap/Modal';
 interface ModalContentType{
     title:string,
     content:string,
+    color:string,
     handleFunc:() => void
 }
 
 
-export default function YesOrNoModal({title,content,handleFunc}:ModalContentType) {
+export default function YesOrNoModal({title,content,color,handleFunc}:ModalContentType) {
   const [show, setShow] = useState(false);
 
   const handleYes= () => {
@@ -23,7 +24,7 @@ export default function YesOrNoModal({title,content,handleFunc}:ModalContentType
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow} className='w-[5rem]'>
+      <Button variant={color} onClick={handleShow} className='w-[5rem]'>
         {title}
       </Button>
 

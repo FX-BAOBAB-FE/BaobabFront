@@ -1,6 +1,6 @@
 import { useLoaderData } from 'react-router-dom'
 import UserImg from './Img/UserImg.png'
-import BoxDataObj from '../../Types/BoxDataObj'
+import BoxDataObj from '../../../Types/BoxDataObj'
 
 export default function ProfileDate(){
     const data = useLoaderData() as BoxDataObj
