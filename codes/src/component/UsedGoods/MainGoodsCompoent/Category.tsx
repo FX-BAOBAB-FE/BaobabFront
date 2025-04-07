@@ -4,15 +4,14 @@ import Larrow from '../image/Larrow.png'
 import { useEffect, useRef, useState } from 'react';
 import {motion} from 'motion/react'
 
-interface wihe{
-    weight:string,
-    height:string
+interface SelectType{
+    selected:string[],
+    setSelected:React.Dispatch<React.SetStateAction<string[]>>
 }
 
 
-export default function Category(){
+export default function Category({selected,setSelected}:SelectType){
     const boxRef = useRef<HTMLDivElement>(null);
-    const [selected, setSelected] = useState<string[]>([]);
     const leftArrow = () => {
         boxRef.current?.scrollBy({left:-130, behavior:'smooth'})
     }
@@ -49,11 +48,11 @@ export default function Category(){
                     {ENUMLIST.map((idx,i) =>(
                         <motion.button 
                             key={i}
-                            onClick={() => Click(idx.value)}
+                            onClick={() => Click(idx.key)}
                             initial={{
-                                borderColor: selected.includes(idx.value) ? 'var(--category)': 'var(--bg-color)'}}
+                                borderColor: selected.includes(idx.key) ? 'var(--category)': 'var(--bg-color)'}}
                             whileHover={{
-                                borderColor: selected.includes(idx.value) ? 'var(--category)': 'var(--bg-color)'}}
+                                borderColor: selected.includes(idx.key) ? 'var(--category)': 'var(--bg-color)'}}
 
                             transition={{ duration:0.3, ease:"easeIn"}}
                             className='flex flex-col items-center w-[8rem] h-[9rem] shrink-0 justify-center mx-1 border-2 rounded-2xl'>

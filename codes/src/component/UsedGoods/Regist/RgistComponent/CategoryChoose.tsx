@@ -30,7 +30,7 @@ export default function CategoryChoose({category,setCategory}:CategoryChooseType
             <AnimatePresence>
                 {checked && 
                 <motion.div 
-                className='w-[40rem] h-auto grid grid-cols-4 p-1'
+                className='w-full h-auto grid grid-cols-4 p-1'
                 initial={{opacity:0 ,y:-20}}
                 animate={{opacity:1,y:0}}
                 exit={{opacity:0,y:-20}}
@@ -41,8 +41,8 @@ export default function CategoryChoose({category,setCategory}:CategoryChooseType
                         key={i}
                         type="button"
                         className='text-xl border-2 p-3 m-1 border-[var(--category)]'
-                        initial={{borderColor:'var(--category)'}}
-                        whileHover={{borderColor:'var(--category-bg)'}}
+                        initial={{borderColor: val.key === category ? 'var(--category-bg)' : 'var(--category)'}}
+                        whileHover={{borderColor:val.key === category ? 'var(--category-bg)' : 'var(--category)'}}
                         transition={{duration:0.5}}
                         value={val.key}
                         onClick={clicked}
