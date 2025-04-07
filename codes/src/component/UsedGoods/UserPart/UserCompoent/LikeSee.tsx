@@ -1,5 +1,5 @@
 import React from "react"
-import { LikeSeeType } from "../../Types/LikeSeeType"
+import { LikeSeeType } from "../../../Types/LikeSeeType"
 
 export default function LikeSee({img,alt}:LikeSeeType){
     return(

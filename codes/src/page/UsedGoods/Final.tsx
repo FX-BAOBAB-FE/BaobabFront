@@ -1,5 +1,5 @@
 import React from 'react'
-import IntroImg from '../../component/UsedGoods/IntroImg';
+import IntroImg from '../../component/UsedGoods/MainGoodsCompoent/IntroImg';
 import BoxList from '../../component/UsedGoods/BoxList';
 import Footer from '../../component/FooterInfo/Footer';
 
