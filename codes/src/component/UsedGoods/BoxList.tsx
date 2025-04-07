@@ -15,7 +15,7 @@ export default function BoxList(){
     const navigate = useNavigate();
     const move = ()=>{
         setTimeout(()=>{
-            navigate('Regist')
+            navigate('/UsedGoodsDeal/Regist')
         },2000)
     }
 

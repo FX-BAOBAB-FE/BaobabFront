@@ -18,6 +18,7 @@ import SuccessFinal from './page/RegisterPage/SuccessPage/SuccessFinal';
 import RegistFinal from './page/UsedGoods/GoodsRegist/RegistFinal';
 import { Loader as GoodsLoader } from './component/UsedGoods/BoxList';
 import { Loader as SlidLoader } from './component/UsedGoods/DetailsPage/ImgSilder/SildImg';
+import EditFinal from './page/UsedGoods/GoodsUpdate/EditFinal';
 const router = createBrowserRouter([
   {
     path:'/',
@@ -32,7 +33,8 @@ const router = createBrowserRouter([
       {path:'Agree/Register', element:<RegisterFinal/>},
       {path:'Login', element:<LoginFinal/>},
       {path:'Agree/Register/Success', element:<SuccessFinal/>},
-      {path:'/UsedGoodsDeal/regist', element:<RegistFinal/>}
+      {path:'/UsedGoodsDeal/regist', element:<RegistFinal/>},
+      {path:'/UsedGoodsDeal/:urlId/edit', element:<EditFinal/> , loader:SlidLoader}
     ]
   }]);
 
