@@ -19,9 +19,9 @@ async function restoreFileItems(imageStrings: { imageId: string; imageUrl: strin
         return {
             id: img.imageId,
             imageUrl:file,
-            imageKind:img.imageKind
-        };
-        })
+            imageKind:img.imageKind,
+            isNew:false,
+        }})
     );
 }
 export default function EditDescript(){
@@ -39,6 +39,7 @@ export default function EditDescript(){
     const [category, setCategory] = useState('');
     const [price, setPrice] = useState('');
     const [imgList, setImgList] = useState<FileItem[]>([]);
+    const [deleteImg,setDeleteImg] = useState<string[]>([]);
 
     useEffect(() => {
         const init = async () => {
@@ -90,7 +91,12 @@ export default function EditDescript(){
     return(
         <Form ref={formRef} onSubmit={handleSubmit} className="w-[80%] h-full flex mt-4 relative">
             <div className="w-[50%]">
-                <ImgInput imgList={imgList} setImgList={setImgList} wLength={3}/>
+                <ImgInput 
+                imgList={imgList} 
+                setImgList={setImgList}
+                wLength={3}
+                
+                />
             </div>
             <div className="w-[50%] flex flex-col ml-10">
                 <InputData title='상품명' content='상품 종류와 특징을 나타낼 수 있도록 입력해주세요' name="title" value={title}/>
