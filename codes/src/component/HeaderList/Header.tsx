@@ -51,7 +51,11 @@ export default function Header(){
     };
     return (
         <>
-            <AppBar position="static" className='flex justify-center items-center'>
+            <AppBar 
+            position="static" 
+            className='flex justify-center items-center' 
+            sx={{backgroundColor:'var(--logo-color)'}}
+            >
                 <div className='w-[80%]'>
                 <Container maxWidth="xl" className='p-0'>
                     <Toolbar disableGutters>
