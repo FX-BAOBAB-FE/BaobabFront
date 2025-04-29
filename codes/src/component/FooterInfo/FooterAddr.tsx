@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function FooterAddr(){
     return(
-        <div className='bg-[#495057] w-full h-[15rem] flex justify-evenly items-center flex-col text-white'>
+        <div className='bg-[#495057] w-full h-[15rem] flex justify-evenly items-center flex-col text-white mt-5'>
             <ul className='flex w-[38%] justify-between'>
                 <li>Features</li>
                 <li>|</li>

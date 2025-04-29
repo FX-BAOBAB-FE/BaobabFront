@@ -4,7 +4,7 @@ import FooterAddr from './FooterAddr'
 
 export default function Footer(){
     return(
-        <div className='mt-10'>
+        <div className='mt-12'>
             <FooterSNS/>
             <FooterAddr/>
         </div>
