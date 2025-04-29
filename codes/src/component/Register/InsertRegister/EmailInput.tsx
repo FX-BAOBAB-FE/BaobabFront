@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { RegisterBtn } from "../../Types/BtnType";
 import email from './Img/email.png'
 import { useDispatch } from "react-redux";
 import { userAction } from "../../reduxData/user-Slice";

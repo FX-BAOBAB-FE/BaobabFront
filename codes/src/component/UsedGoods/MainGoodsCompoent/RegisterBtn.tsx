@@ -11,6 +11,7 @@ export default function RegisterBtn({onClick}:FuncType){
 
     return(
         <motion.button
+        type="submit"
             initial={{
                 backgroundColor: click ? '#172177' : 'var(--logo-color)', 
                 borderColor: "var(--logo-color)"

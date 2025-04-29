@@ -1,6 +1,7 @@
 import Btn from '../UsedGoods/MainBtn';
 import googleplay from '../../Img/googleplay.png'
 import appstore from '../../Img/appstore.png'
+import PlayStore from '../CommonComponent/PlayStore';
 
 export default function TextComponent(){
     return(
@@ -15,10 +16,7 @@ export default function TextComponent(){
                 laudantium autem deleniti aspernatur, 
                 voluptate libero tempora quae tempore totam repellendus!
             </p>
-            <div className="flex">
-                <Btn Src={googleplay}>Google Play</Btn>
-                <Btn Src={appstore}>App Store</Btn>
-            </div>
+            <PlayStore />
         </div>
     )
 }

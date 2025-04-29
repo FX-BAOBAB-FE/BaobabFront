@@ -7,23 +7,6 @@ import ImgInput, { FileItem } from "../Regist/RgistComponent/ImgInput";
 import InputData from "../Regist/RgistComponent/InputData";
 import RegisterBtn from "../MainGoodsCompoent/RegisterBtn";
 
-async function urlToFile(url: string, fileName: string): Promise<File> {
-    const res = await fetch(url);
-    const blob = await res.blob();
-    return new File([blob], fileName, { type: blob.type });
-  }
-async function restoreFileItems(imageStrings: { imageId: string; imageUrl: string ,imageKind:string}[]): Promise<FileItem[]> {
-    return await Promise.all(
-        imageStrings.map(async (img, index) => {
-        const file = await urlToFile(img.imageUrl, `restored-${index}.png`);
-        return {
-            id: img.imageId,
-            imageUrl:file,
-            imageKind:img.imageKind,
-            isNew:false,
-        }})
-    );
-}
 export default function EditDescript(){
     const formRef = useRef<HTMLFormElement>(null);
     const data = useLoaderData() as {
@@ -48,19 +31,21 @@ export default function EditDescript(){
             setContent(data.content);
             setCategory(data.category);
             setPrice(data.price);
-            console.log(data.imageList)
-            const restoredList = await restoreFileItems(data.imageList); // 🔥 복원
-            setImgList(restoredList);
+            setImgList(imgList);
           }
         };
       
         init();
       }, [data]);
-
-    useEffect(()=>{console.log(imgList)},[imgList])
     
+    const onChangeTitle = (e:React.ChangeEvent<HTMLInputElement>)=> setTitle(e.target.value)
+    const onChangeContent = (e:React.ChangeEvent<HTMLInputElement>)=> setContent(e.target.value)
+    const onChangePrice = (e:React.ChangeEvent<HTMLInputElement>)=> setPrice(e.target.value)
     const handleSubmit = async(e:React.FormEvent)=>{
         e.preventDefault();
+        console.log("QWE");
+        console.log(imgList.filter(img => img.isNew))
+        console.log(imgList);
         if(!formRef.current) return
 
         const formData = new FormData(formRef.current);
@@ -84,8 +69,7 @@ export default function EditDescript(){
             console.log(image.imageUrl)
             formData.append("imageList",image.imageUrl);
         })
-        
-        navigate(-1);
+        //navigate(-1);
 
     }
     return(
@@ -95,17 +79,20 @@ export default function EditDescript(){
                 imgList={imgList} 
                 setImgList={setImgList}
                 wLength={3}
-                
+                onDelete={(id)=>{
+                    const deleted = imgList.find(img => img.id===id);
+                    if(deleted){setDeleteImg(prev => [...prev,id])}
+                }}
                 />
             </div>
             <div className="w-[50%] flex flex-col ml-10">
-                <InputData title='상품명' content='상품 종류와 특징을 나타낼 수 있도록 입력해주세요' name="title" value={title}/>
+                <InputData title='상품명' content='상품 종류와 특징을 나타낼 수 있도록 입력해주세요' name="title" value={title} onChange={onChangeTitle}/>
                 <Form.Group className="mb-3 flex flex-col" controlId="content">
                     <Form.Label className='font-bold text-xl '>설명</Form.Label>
                     <Form.Label>상품 종류와 특징에 대해 자세히 입력해주세요</Form.Label>
-                    <Form.Control as="textarea" rows={3} required name="content" className='w-full resize-none' value={content}/>
+                    <Form.Control as="textarea" rows={3} required name="content" className='w-full resize-none' value={content} onChange={onChangeContent}/>
                 </Form.Group>
-                <InputData title='가격' content="상품에 대한 가격을 입력해주세요" name="price" value={price}/>
+                <InputData title='가격' content="상품에 대한 가격을 입력해주세요" name="price" value={price} onChange={onChangePrice}/>
                 <div className="">
                     <CategoryChoose category={category} setCategory={setCategory}/>
                 </div>

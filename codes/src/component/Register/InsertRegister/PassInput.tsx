@@ -1,10 +1,8 @@
-import { RefBtn } from '../../Types/BtnType';
+
 import eye from './Img/eye.png'
 import wing from './Img/wing.png'
 import lock from './Img/lock.png'
 import { forwardRef, useRef, useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { userAction } from '../../reduxData/user-Slice';
 import InsertColorChange from "./ChangeContext/InsertColorChange";
 
 type passType ={

@@ -1,8 +1,7 @@
 import React from 'react'
-import googleplay from '../../../Img/googleplay.png'
-import appstore from '../../../Img/appstore.png'
 import Btn from '../MainBtn'
 import box from '../../../Img/MainImg.png'
+import PlayStore from '../../CommonComponent/PlayStore'
 
 export default function IntroImg(){
     return(
@@ -17,10 +16,7 @@ export default function IntroImg(){
                         <p className='text-xl text-[#868E96]'>Leave unused items and less frequently used items.</p>
                         <p className='text-xl text-[#868E96]'>Let’s expand our house by finding a wasted space!</p>
                     </div>
-                    <div className='flex'>
-                        <Btn Src={googleplay}>Google Play</Btn>
-                        <Btn Src={appstore}>App Store</Btn>
-                    </div>
+                    <PlayStore />
                 </div>
                 <div className='flex'>
                     <img className='h-64' src={box} alt='box'/>

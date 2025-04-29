@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { RegisterBtn } from "../../Types/BtnType";
 import connection from './Img/connection.png'
 import arrow_down from './Img/arrow_down.png'
 import arrow_up from './Img/arrow_up.png'

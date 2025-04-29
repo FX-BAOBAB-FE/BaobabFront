@@ -7,16 +7,35 @@ import { useNavigate } from "react-router-dom";
 
 export interface FileItem{
     id:string,
-    imageUrl:File,
+    imageUrl:string,
     imageKind:string,
+    isNew?:boolean
 }
 
 interface ImgInputRef{
     imgList:FileItem[],
     setImgList: React.Dispatch<React.SetStateAction<FileItem[]>>,
     wLength:number,
-    onDelete?:() => {}
+    onDelete?:(id:string) => void
 }
+
+function fileToBase64(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+  
+      reader.onload = () => {
+        const result = reader.result as string;
+        resolve(result);
+      };
+  
+      reader.onerror = (error) => {
+        reject(error);
+      };
+  
+      reader.readAsDataURL(file); // ★ 여기서 base64로 읽음
+    });
+  }
+
 export default function ImgInput({imgList,setImgList,wLength,onDelete}:ImgInputRef){
     const [modalShow, setModalShow] = useState({check:false, img:''});
     console.log(wLength)
@@ -27,26 +46,29 @@ export default function ImgInput({imgList,setImgList,wLength,onDelete}:ImgInputR
 
     const handleDeleteImg = (id: string) => {
         setImgList(prev => prev.filter(img => img.id !== id));
+        if(onDelete) onDelete(id);
       };
 
-    const onChangeImg = (e:React.ChangeEvent<HTMLInputElement>) => {
-        const files = e.target.files
-        if(!files) return
-        
-        const newFile:FileItem[] = Array.from(files).map((file) =>{
-            const fileName = file.name
-            const ext = fileName.split('.').pop()?.toLowerCase();
-            let kind = ''
-            if(ext==='jpg' || ext == "png"){
-                kind = 'ARTICLE'
-            }else{
-                kind = 'AR'
-            }
-            return { id:v4(), imageUrl:file, imageKind:kind,isNew:true}
-        })
-        
-        setImgList(prev => [...prev, ...newFile])
-    }
+    const onChangeImg = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files) return;
+    
+    const filePromises = Array.from(files).map(async (file) => {
+        const fileName = file.name;
+        const ext = fileName.split('.').pop()?.toLowerCase();
+        const kind = (ext === 'jpg' || ext === 'png') ? 'ARTICLE' : 'AR';
+        const base64 = await fileToBase64(file); // base64 문자열로 변환
+        return {
+        id: v4(),
+        imageUrl: base64,
+        imageKind: kind,
+        isNew: true,
+        };
+    });
+    
+    const newFiles = await Promise.all(filePromises); // 여기서 Promise<FileItem>[] → FileItem[]
+    setImgList(prev => [...prev, ...newFiles]);
+    };
 
     const onDragEnd = (result:any) =>{
         //드래그 실패시
@@ -86,7 +108,7 @@ export default function ImgInput({imgList,setImgList,wLength,onDelete}:ImgInputR
                                             width: index === 0 ? `${7* wLength}rem` : `${2.5* wLength}rem`, 
                                             height: index === 0 ? `${5* wLength}rem` : `${2.5* wLength}rem`}}
                                         onClick={() => {
-                                            selectImg(URL.createObjectURL(img.imageUrl))
+                                            selectImg(img.imageUrl)
                                         }}
                                         >
                         
@@ -102,7 +124,7 @@ export default function ImgInput({imgList,setImgList,wLength,onDelete}:ImgInputR
                                             </button>
 
                                             <img
-                                            src={URL.createObjectURL(img.imageUrl)}
+                                            src={img.imageUrl}
                                             alt="이미지"
                                             className="w-full h-full object-cover"
                                             />

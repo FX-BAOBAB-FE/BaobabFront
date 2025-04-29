@@ -1,4 +1,5 @@
 export type BtnType = {
+    to:string,
     Src:string,
     children:any
 }

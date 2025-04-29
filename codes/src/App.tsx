@@ -38,7 +38,6 @@ const router = createBrowserRouter([
     ]
   }]);
 
-  console.log("ASD");
 export let persistor = persistStore(store);
 function App() {
   return (
