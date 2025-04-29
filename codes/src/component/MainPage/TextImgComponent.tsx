@@ -6,7 +6,7 @@ interface TextImgComponentProps{
 
 export default function TextImgComponent({children}:TextImgComponentProps) {
     return (
-        <div className='flex w-[80%] mt-12'>
+        <div className='flex flex-col w-[80%] mt-12 justify-between lg:flex-row items-center'>
             {children}
         </div>
     );

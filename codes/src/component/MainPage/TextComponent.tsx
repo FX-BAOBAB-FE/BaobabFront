@@ -5,7 +5,7 @@ import PlayStore from '../CommonComponent/PlayStore';
 
 export default function TextComponent(){
     return(
-        <div className='w-[60%] h-96 mr-10'>
+        <div className='w-[21rem] h-96 mr-10'>
             <div className="font-bold text-5xl">
                 <p>Find</p>
                 <p>hidden area of</p>
