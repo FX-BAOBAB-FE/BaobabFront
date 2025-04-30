@@ -23,7 +23,6 @@ export default function EditDescript(){
     const [price, setPrice] = useState('');
     const [imgList, setImgList] = useState<FileItem[]>([]);
     const [deleteImg,setDeleteImg] = useState<string[]>([]);
-
     useEffect(() => {
         const init = async () => {
           if (data) {
@@ -32,6 +31,7 @@ export default function EditDescript(){
             setCategory(data.category);
             setPrice(data.price);
             setImgList(imgList);
+            
           }
         };
       
@@ -43,9 +43,6 @@ export default function EditDescript(){
     const onChangePrice = (e:React.ChangeEvent<HTMLInputElement>)=> setPrice(e.target.value)
     const handleSubmit = async(e:React.FormEvent)=>{
         e.preventDefault();
-        console.log("QWE");
-        console.log(imgList.filter(img => img.isNew))
-        console.log(imgList);
         if(!formRef.current) return
 
         const formData = new FormData(formRef.current);
@@ -75,15 +72,7 @@ export default function EditDescript(){
     return(
         <Form ref={formRef} onSubmit={handleSubmit} className="w-[80%] h-full flex mt-4 relative">
             <div className="w-[50%]">
-                <ImgInput 
-                imgList={imgList} 
-                setImgList={setImgList}
-                wLength={3}
-                onDelete={(id)=>{
-                    const deleted = imgList.find(img => img.id===id);
-                    if(deleted){setDeleteImg(prev => [...prev,id])}
-                }}
-                />
+                
             </div>
             <div className="w-[50%] flex flex-col ml-10">
                 <InputData title='상품명' content='상품 종류와 특징을 나타낼 수 있도록 입력해주세요' name="title" value={title} onChange={onChangeTitle}/>
@@ -97,7 +86,7 @@ export default function EditDescript(){
                     <CategoryChoose category={category} setCategory={setCategory}/>
                 </div>
                 <div className="">
-                    <RegisterBtn onClick={() => {}}/>
+                    <RegisterBtn content="등록"/>
                 </div>
             </div>
         </Form>

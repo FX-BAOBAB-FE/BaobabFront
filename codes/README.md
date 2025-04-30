@@ -20,4 +20,5 @@ uuid
 react-modal 
 CSS package
 tailwind,
-bootStrap
+bootStrap,
+react-paginate

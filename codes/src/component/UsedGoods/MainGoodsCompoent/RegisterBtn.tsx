@@ -1,42 +1,17 @@
-import {AnimatePresence, motion} from "motion/react"
-import { useState } from "react";
-import Spinner from '../image/Spinner.gif'
+import { Button } from "@mui/material";
 
-interface FuncType{
-    onClick:() => void
+type contentType={
+    content:string,
 }
 
-export default function RegisterBtn({onClick}:FuncType){
-    const [click,setClick] = useState(false);
+export default function RegisterBtn({content}:contentType){
 
     return(
-        <motion.button
-        type="submit"
-            initial={{
-                backgroundColor: click ? '#172177' : 'var(--logo-color)', 
-                borderColor: "var(--logo-color)"
-            }}
-            whileHover={{
-                backgroundColor:'#172177'
-            }}
-            onTap={() => {
-                setClick(true)
-                onClick();
-                setTimeout(()=>setClick(false),1000)
-            }}
-            onTapCancel={() => setClick(false)}
-            transition={{
-                duration:0.2,
-                ease:"easeIn"
-            }}
-            
-            className='
-                flex justify-center items-center w-[15rem] h-[4rem] text-xl
-                rounded-3xl text-white border-[3px]' 
+        <Button 
+        variant="contained"
+        className="w-[10rem] h-[3.5rem]"
         >
-            <span>
-                등록하기
-            </span>
-        </motion.button>
+            <p className="text-xl">{content}</p>
+        </Button>
     )
 }
